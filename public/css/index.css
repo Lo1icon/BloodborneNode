@@ -1,0 +1,82 @@
+* {
+    font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+
+}
+
+#content {
+    width: 100%;
+    height: 100%;
+
+}
+
+#leftMenu {
+    height: 100%;
+    width: 15%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+#right {
+    width: 85%;
+    height: auto;
+    position: absolute;
+    left: 15%;
+    top: 0;
+    bottom:0;
+    background-color: #f1f1f1;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+#topMainData{
+    height: 100px;
+    width:100%;
+    background-color: #EDF4F9;
+}
+.utdData{
+    height:100px;
+    width:20%;
+    display: inline-block;
+    float: left;
+    /*background-color:red;*/
+    transition: background-color 0.3s ease-in;
+}
+.utdData:hover{
+    background-color: #FFFFFF;
+
+}
+.utdData p{
+    text-align: center;
+}
+#restCharts{
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    height:auto;
+    width:auto;
+    background-color: #f1f1f1;
+
+    position: absolute;
+    z-index: 99;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#topBar{
+    height:50px;
+    width:100%;
+    position: fixed;
+    top:0;
+    z-index:100;
+}
+.homeData{
+    height:31%;
+    width:32%;
+    background: #FFFFFF !important;
+    border:1px solid #f9f9f9;
+    float: left;
+    display: inline-block;
+    margin-left:1%;
+    margin-top:1%;
+}
