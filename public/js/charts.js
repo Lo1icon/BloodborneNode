@@ -395,11 +395,10 @@ $(function () {
                 radius : '55%',
                 center: ['50%', '50%'],
                 data:[
-                    {value:335, name:'直接访问'},
-                    {value:310, name:'邮件营销'},
-                    {value:274, name:'联盟广告'},
-                    {value:235, name:'视频广告'},
-                    {value:400, name:'搜索引擎'}
+                    {value:300 , name:'高活跃度'},
+                    {value:400 , name:'中活跃度'},
+                    {value:150, name:'低活跃度'},
+                    {value:200, name:'沉睡客户'}
                 ].sort(function (a, b) { return a.value - b.value}),
                 roseType: 'angle',
                 label: {
