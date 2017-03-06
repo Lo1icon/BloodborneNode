@@ -464,32 +464,20 @@ $(function () {
     var option8={
         color:['#c23531', '#91c7ae'],
         title:{
-<<<<<<< HEAD
             text:"深访/跳出顾客占比"
         },
         grid:{
             top:0,
-=======
-            text:"新老顾客占比"
->>>>>>> origin/master
         },
         tooltip : {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
-<<<<<<< HEAD
         // legend: {
         //     orient: 'vertical',
         //     left: 'right',
         //     data: ['新顾客','老顾客']
         // },
-=======
-        legend: {
-            orient: 'vertical',
-            left: 'right',
-            data: ['新顾客','老顾客']
-        },
->>>>>>> origin/master
         series : [
             {
                 name: '顾客类别',
@@ -529,7 +517,6 @@ $(function () {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
-<<<<<<< HEAD
         // grid:{
         //     height:'70%'
         // },
@@ -538,13 +525,6 @@ $(function () {
         //     left: 'right',
         //     data: ['深访率','跳出率','正常客流占比']
         // },
-=======
-        legend: {
-            orient: 'vertical',
-            left: 'right',
-            data: ['深访率','跳出率','正常客流占比']
-        },
->>>>>>> origin/master
         series : [
             {
                 name: '访问来源',
