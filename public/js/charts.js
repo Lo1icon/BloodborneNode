@@ -464,7 +464,7 @@ $(function () {
     var option8={
         color:['#c23531', '#91c7ae'],
         title:{
-            text:"深访/跳出顾客占比"
+            text:"新老顾客占比"
         },
         grid:{
             top:0,
@@ -511,7 +511,7 @@ $(function () {
     var option9={
         color:['#c23531', '#91c7ae','#d48265'],
         title:{
-            text:"新老顾客占比"
+            text:"深访/跳出占比"
         },
         tooltip : {
             trigger: 'item',
