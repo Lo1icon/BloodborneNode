@@ -183,16 +183,16 @@ $(function () {
     function randomData() {
         now = new Date(+now + threeSec);
         if(value >1)
-            value = value - Math.random()/5;
+            value = (value - Math.random()/5);
         else if(value <0)
-            value=value+Math.random()/5;
+            value=(value+Math.random()/5);
         else
-            value=value+Math.random()/5-0.1;
+            value=(value+Math.random()/5-0.1);
         return {
             name: now.toString(),
             value: [
                 ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds()),
-                value
+                (value.toFixed(4))
             ]
         }
     }
