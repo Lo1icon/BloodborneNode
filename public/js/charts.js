@@ -1,31 +1,200 @@
 /**
  * Created by Lynn on 2017/3/3.
  */
- // color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
-$(function () {
-    var keliucharts = echarts.init(document.getElementById('traffic'));
+    // color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
+var ajaxPre = "http://localhost:8080/BloodborneNode";
 
-    var keliudata = [];
-    // var now = +new Date(2017, 3, 6);
-    var now=+new Date();
-    var threeSec = 3* 1000;
-    var value = Math.random() * 1000;
-    for (var i = 0; i < 400; i++) {
-        keliudata.push(randomData());
-    }
+//size insize inrate
 
-    function randomData() {
-        now = new Date(+now + threeSec);
-        value = value + Math.random() * 21 - 10;
-        return {
-            name: now.toString(),
-            value: [
-                ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds()),
-                Math.round(value)
+
+//ajax URL here
+var url = {
+    lineChart: '/getFlow',
+    // keliuAPI:ajaxPre+'/keliu',
+    // visitorAPI:ajaxPre+'/visitor',
+    // visPerAPI:ajaxPre+'/visper'
+};
+
+// var lineJSON = [];
+
+
+var keliudata = [];
+var visitordata = [];
+var visperdata = [];
+var keliucharts = echarts.init(document.getElementById('traffic'));
+var visitorcharts = echarts.init(document.getElementById('visitor'));
+var vispercharts = echarts.init(document.getElementById('visPer'));
+
+
+function jsonto(json) {
+    for (var i = 0; i < 10; i++) {
+        keliudata.push({
+            name: json[i].time,
+            value: [json[i].time,
+                json[i].size
             ]
+        });
+        visitordata.push({
+            name: json[i].time,
+            value: [json[i].time,
+                json[i].insize
+            ]
+        });
+        visperdata.push({
+            name: json[i].time,
+            value: [json[i].time,
+                json[i].inrate
+            ]
+        });
+        keliudata.shift();
+        visperdata.shift();
+        visitordata.shift();
+    }
+};
+
+function setOP() {
+    keliucharts.setOption({
+        series: [{
+            data: keliudata
+        }]
+
+    });
+    visitorcharts.setOption({
+        series: [{
+            data: visitordata
+        }]
+    });
+    vispercharts.setOption({
+        series: [{
+            data: visperdata
+        }]
+    })
+};
+
+function getJSON() {
+    $.get(url.lineChart, function (json) {
+        jsonto(json)
+        setOP();
+    });
+    return;
+};
+
+
+setInterval(function () {
+    getJSON();
+}, 3000);
+
+
+// var keliudata = [];
+// var now=+new Date();
+// var threeSec = 3* 1000;
+// var value = Math.random() * 1000;
+// for (var i = 0; i < 400; i++) {
+//     keliudata.push(randomData());
+// }
+//
+// function randomData() {
+//     now = new Date(+now + threeSec);
+//     value = value + Math.random() * 21 - 10;
+//     return {
+//         name: now.toString(),
+//         value: [
+//             ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds()),
+//             Math.round(value)
+//         ]
+//     }
+// }
+$(function () {
+
+    var json1 = [
+        {
+            time: "2017/03/04 22:22:22",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        }, {
+            time: "2017/03/04 22:22:25",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        }, {
+            time: "2017/03/04 22:22:28",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        }, {
+            time: "2017/03/04 22:22:31",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        }, {
+            time: "2017/03/04 22:22:34",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        }, {
+            time: "2017/03/04 22:22:37",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        }, {
+            time: "2017/03/04 22:22:40",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        }, {
+            time: "2017/03/04 22:22:43",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        }, {
+            time: "2017/03/04 22:22:46",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        },
+        {
+            time: "2017/03/04 22:22:49",
+            size: 100,
+            insize: 100,
+            inrate: 0.5,
+
+        }];
+
+    function jsonFirst(json) {
+        for (var i = 0; i < 10; i++) {
+            keliudata.push({
+                name: json[i].time,
+                value: [json[i].time,
+                    json[i].size
+                ]
+            });
+            visitordata.push({
+                name: json[i].time,
+                value: [json[i].time,
+                    json[i].insize
+                ]
+            });
+            visperdata.push({
+                name: json[i].time,
+                value: [json[i].time,
+                    json[i].inrate
+                ]
+            });
+
         }
     }
 
+    jsonFirst(json1);
 
     var option1 = {
         title: {
@@ -35,9 +204,9 @@ $(function () {
             trigger: 'axis',
             formatter: function (params) {
                 params = params[0];
-                var date = new Date(params.name);
+                // var date = new Date(params.name);
                 // return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
-                return date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'/'+params.value[1];
+                return params.name + ' ' + params.value[1];
             },
             axisPointer: {
                 animation: false
@@ -67,49 +236,48 @@ $(function () {
     };
     keliucharts.setOption(option1);
 
-    setInterval(function () {
-
-        for (var i = 0; i < 1; i++) {
-            keliudata.shift();
-            keliudata.push(randomData());
-        }
-
-        keliucharts.setOption({
-            series: [{
-                data: keliudata
-            }]
-        });
-    }, 3000);
-    // window.onresize=keliucharts.resize;
+// setInterval(function () {
+//
+//     for (var i = 0; i < 1; i++) {
+//         keliudata.shift();
+//         keliudata.push(randomData());
+//     }
+//
+//     keliucharts.setOption({
+//         series: [{
+//             data: keliudata
+//         }]
+//     });
+//
+//
+// }, 3000);
+// window.onresize=keliucharts.resize;
     window.addEventListener("resize", function () {
 
         keliucharts.resize();
 
     });
-})
 
-$(function () {
-    var visitorcharts = echarts.init(document.getElementById('visitor'));
 
-    var visitordata = [];
-    var now=+new Date();
-    var threeSec = 3* 1000;
-    var value = Math.random() * 1000;
-    for (var i = 0; i < 400; i++) {
-        visitordata.push(randomData());
-    }
-
-    function randomData() {
-        now = new Date(+now + threeSec);
-        value = value + Math.random() * 21 - 10;
-        return {
-            name: now.toString(),
-            value: [
-                ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds()),
-                Math.round(value)
-            ]
-        }
-    }
+// var visitordata = [];
+// var now = +new Date();
+// var threeSec = 3 * 1000;
+// var value = Math.random() * 1000;
+// for (var i = 0; i < 50; i++) {
+//     visitordata.push(randomData());
+// }
+//
+// function randomData() {
+//     now = new Date(+now + threeSec);
+//     value = value + Math.random() * 21 - 10;
+//     return {
+//         name: now.toString(),
+//         value: [
+//             ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/') + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds()),
+//             Math.round(value)
+//         ]
+//     }
+// }
 
     var option2 = {
         title: {
@@ -119,8 +287,8 @@ $(function () {
             trigger: 'axis',
             formatter: function (params) {
                 params = params[0];
-                var date = new Date(params.name);
-                return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
+                // var date = new Date(params.name);
+                return params.name + ' ' + params.value[1];
             },
             axisPointer: {
                 animation: false
@@ -150,52 +318,50 @@ $(function () {
     };
     visitorcharts.setOption(option2);
 
-    setInterval(function () {
-
-        for (var i = 0; i < 1; i++) {
-            visitordata.shift();
-            visitordata.push(randomData());
-        }
-
-        visitorcharts.setOption({
-            series: [{
-                data: visitordata
-            }]
-        });
-    }, 3000);
-    // window.onresize=visitorcharts.resize;
+// setInterval(function () {
+//
+//     for (var i = 0; i < 1; i++) {
+//         visitordata.shift();
+//         visitordata.push(randomData());
+//     }
+//
+//     visitorcharts.setOption({
+//         series: [{
+//             data: visitordata
+//         }]
+//     });
+// }, 3000);
+// window.onresize=visitorcharts.resize;
     window.addEventListener("resize", function () {
 
         visitorcharts.resize();
 
     });
-})
 
-$(function () {
-    var vispercharts = echarts.init(document.getElementById('visPer'));
-    var visperdata = [0.01, 0.02];
-    var now=+new Date();
-    var threeSec = 3* 1000;
-    var value = Math.random();
-    for (var i = 0; i < 400; i++) {
-        visperdata.push(randomData());
-    }
-    function randomData() {
-        now = new Date(+now + threeSec);
-        if(value >1)
-            value = (value - Math.random()/5);
-        else if(value <0)
-            value=(value+Math.random()/5);
-        else
-            value=(value+Math.random()/5-0.1);
-        return {
-            name: now.toString(),
-            value: [
-                ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds()),
-                (value.toFixed(4))
-            ]
-        }
-    }
+
+// var visperdata = [0.01, 0.02];
+// var now = +new Date();
+// var threeSec = 3 * 1000;
+// var value = Math.random();
+// for (var i = 0; i < 400; i++) {
+//     visperdata.push(randomData());
+// }
+// function randomData() {
+//     now = new Date(+now + threeSec);
+//     if (value > 1)
+//         value = (value - Math.random() / 5);
+//     else if (value < 0)
+//         value = (value + Math.random() / 5);
+//     else
+//         value = (value + Math.random() / 5 - 0.1);
+//     return {
+//         name: now.toString(),
+//         value: [
+//             ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/') + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds()),
+//             (value.toFixed(4))
+//         ]
+//     }
+// }
 
 
     var option3 = {
@@ -206,8 +372,8 @@ $(function () {
             trigger: 'axis',
             formatter: function (params) {
                 params = params[0];
-                var date = new Date(params.name);
-                return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
+                // var date = new Date(params.name);
+                return params.name + ' ' + params.value[1];
             },
             axisPointer: {
                 animation: false
@@ -237,35 +403,35 @@ $(function () {
     };
     vispercharts.setOption(option3);
 
-    setInterval(function () {
-
-        for (var i = 0; i < 1; i++) {
-            visperdata.shift();
-            visperdata.push(randomData());
-        }
-
-        vispercharts.setOption({
-            series: [{
-                data: visperdata
-            }]
-        });
-    }, 3000);
-    // window.onresize=vispercharts.resize;
+// setInterval(function () {
+//
+//     for (var i = 0; i < 1; i++) {
+//         visperdata.shift();
+//         visperdata.push(randomData());
+//     }
+//
+//     vispercharts.setOption({
+//         series: [{
+//             data: visperdata
+//         }]
+//     });
+// }, 3000);
+// window.onresize=vispercharts.resize;
     window.addEventListener("resize", function () {
 
         vispercharts.resize();
 
     });
-})
 
+})
 $(function () {
     var vlvcharts = echarts.init(document.getElementById('visLastVis'));
 
     var option4 = {
         color: ['#c23531'],
         //#3398DB
-        title:{
-            text:'来访周期分布'
+        title: {
+            text: '来访周期分布'
         },
         tooltip: {
             trigger: 'axis',
@@ -316,12 +482,12 @@ $(function () {
 
 })
 $(function () {
-    var tscharts=echarts.init(document.getElementById('timeStay'));
+    var tscharts = echarts.init(document.getElementById('timeStay'));
     var option5 = {
         color: ['#c23531'],
         //#3398DB
-        title:{
-            text:'驻店时长分布'
+        title: {
+            text: '驻店时长分布'
         },
         tooltip: {
             trigger: 'axis',
@@ -343,8 +509,8 @@ $(function () {
                     alignWithLabel: true
                 },
                 // x轴需要全部显示时添加
-                axisLabel:{
-                    interval:0
+                axisLabel: {
+                    interval: 0
                 }
             }
         ],
@@ -358,7 +524,7 @@ $(function () {
                 name: '人数',
                 type: 'bar',
                 barWidth: '60%',
-                data: [10, 100, 200, 400,334]
+                data: [10, 100, 200, 400, 334]
             }
         ]
     };
@@ -375,9 +541,9 @@ $(function () {
 //     var
 // })
 $(function () {
-    var vacharts=echarts.init(document.getElementById('visActivity'));
-    var option7={
-        color:['#c23531','#61a0a8', '#d48265', '#91c7ae'],
+    var vacharts = echarts.init(document.getElementById('visActivity'));
+    var option7 = {
+        color: ['#c23531', '#61a0a8', '#d48265', '#91c7ae'],
         title: {
             text: '顾客活跃度',
             // left: 'center',
@@ -391,7 +557,7 @@ $(function () {
         //     left: 'right',
         //     data: ['高活跃度','中活跃度','低活跃度','沉睡客户']
         // },
-        tooltip : {
+        tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
@@ -404,39 +570,37 @@ $(function () {
                 colorLightness: [0, 1]
             }
         },
-        series : [
+        series: [
             {
-                name:'顾客类型',
-                type:'pie',
-                radius : ['20%','65%'],
+                name: '顾客类型',
+                type: 'pie',
+                radius: ['20%', '65%'],
                 center: ['50%', '50%'],
-                data:[
-                    {value:300 , name:'高活跃度'},
-                    {value:400 , name:'中活跃度'},
-                    {value:150, name:'低活跃度'},
-                    {value:200, name:'沉睡客户'}
-                ].sort(function (a, b) { return a.value - b.value}),
+                data: [
+                    {value: 300, name: '高活跃度'},
+                    {value: 400, name: '中活跃度'},
+                    {value: 150, name: '低活跃度'},
+                    {value: 200, name: '沉睡客户'}
+                ].sort(function (a, b) {
+                    return a.value - b.value
+                }),
                 roseType: 'angle',
                 label: {
                     normal: {
-                        textStyle: {
-                        }
+                        textStyle: {}
                     }
                 },
                 labelLine: {
                     normal: {
-                        lineStyle: {
-                        },
+                        lineStyle: {},
                         smooth: 0.2,
                         length: 10,
                         length2: 20
                     }
                 },
                 itemStyle: {
-                    normal: {
-
-                    },
-                    emphasis:{
+                    normal: {},
+                    emphasis: {
                         shadowBlur: 10,
                         shadowOffsetX: 0,
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
@@ -460,16 +624,16 @@ $(function () {
 })
 
 $(function () {
-    var nocharts=echarts.init(document.getElementById('newOldVisitor'));
-    var option8={
-        color:['#c23531', '#91c7ae'],
-        title:{
-            text:"新老顾客占比"
+    var nocharts = echarts.init(document.getElementById('newOldVisitor'));
+    var option8 = {
+        color: ['#c23531', '#91c7ae'],
+        title: {
+            text: "新老顾客占比"
         },
-        grid:{
-            top:0,
+        grid: {
+            top: 0,
         },
-        tooltip : {
+        tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
@@ -478,16 +642,16 @@ $(function () {
         //     left: 'right',
         //     data: ['新顾客','老顾客']
         // },
-        series : [
+        series: [
             {
                 name: '顾客类别',
                 type: 'pie',
                 // radius : '55%',
-                radius : ['20%','55%'],
+                radius: ['20%', '55%'],
                 center: ['50%', '60%'],
-                data:[
-                    {value:200, name:'新顾客'},
-                    {value:500, name:'老顾客'}
+                data: [
+                    {value: 200, name: '新顾客'},
+                    {value: 500, name: '老顾客'}
                 ],
                 itemStyle: {
                     emphasis: {
@@ -507,13 +671,13 @@ $(function () {
     });
 })
 $(function () {
-    var jicharts=echarts.init(document.getElementById('jumpVisitor'));
-    var option9={
-        color:['#c23531', '#91c7ae','#d48265'],
-        title:{
-            text:"深访/跳出占比"
+    var jicharts = echarts.init(document.getElementById('jumpVisitor'));
+    var option9 = {
+        color: ['#c23531', '#91c7ae', '#d48265'],
+        title: {
+            text: "深访/跳出占比"
         },
-        tooltip : {
+        tooltip: {
             trigger: 'item',
             formatter: "{b} : {c} ({d}%)"
         },
@@ -525,19 +689,19 @@ $(function () {
         //     left: 'right',
         //     data: ['深访率','跳出率','正常客流占比']
         // },
-        series : [
+        series: [
             {
                 name: '顾客类别',
                 type: 'pie',
-                radius : ['15%','55%'],
+                radius: ['15%', '55%'],
                 center: ['50%', '60%'],
-                data:[
-                    {value:0.2, name:'深访率'},
-                    {value:0.3, name:'跳出率'},
-                    {value:0.5,name:'正常客流占比'}
+                data: [
+                    {value: 0.2, name: '深访率'},
+                    {value: 0.3, name: '跳出率'},
+                    {value: 0.5, name: '正常客流占比'}
 
                 ],
-                roseType:'area',
+                roseType: 'area',
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,

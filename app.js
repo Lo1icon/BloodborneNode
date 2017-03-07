@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var ejs = require('ejs');
 
 var index = require('./routes/index');
+var getFlow=require('./routes/getFlow');
 
 var app = express();
 
@@ -22,7 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/index', index);
+app.use('/getFlow', getFlow);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,5 +43,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.listen(80,"104.224.132.3");
+app.listen(8080,"127.0.0.1");
 module.exports = app;
