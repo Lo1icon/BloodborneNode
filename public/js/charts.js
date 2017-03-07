@@ -406,7 +406,7 @@ $(function () {
         },
         series : [
             {
-                name:'访问来源',
+                name:'顾客类型',
                 type:'pie',
                 radius : ['20%','65%'],
                 center: ['50%', '50%'],
@@ -515,7 +515,7 @@ $(function () {
         },
         tooltip : {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{b} : {c} ({d}%)"
         },
         // grid:{
         //     height:'70%'
@@ -527,7 +527,7 @@ $(function () {
         // },
         series : [
             {
-                name: '访问来源',
+                name: '顾客类别',
                 type: 'pie',
                 radius : ['15%','55%'],
                 center: ['50%', '60%'],
