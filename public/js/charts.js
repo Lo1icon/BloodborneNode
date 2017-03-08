@@ -28,6 +28,9 @@ var vispercharts = echarts.init(document.getElementById('visPer'));
 
 function jsonto(json) {
     for (var i = 0; i < json.length; i++) {
+        keliudata.shift();
+        visperdata.shift();
+        visitordata.shift();
         keliudata.push({
             name: json[i].time,
             value: [json[i].time,
@@ -46,9 +49,6 @@ function jsonto(json) {
                 json[i].inrate
             ]
         });
-        keliudata.shift();
-        visperdata.shift();
-        visitordata.shift();
     }
 };
 
