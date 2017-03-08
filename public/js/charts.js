@@ -27,7 +27,7 @@ var vispercharts = echarts.init(document.getElementById('visPer'));
 
 
 function jsonto(json) {
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < json.length; i++) {
         keliudata.push({
             name: json[i].time,
             value: [json[i].time,
