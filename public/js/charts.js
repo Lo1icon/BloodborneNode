@@ -2,17 +2,15 @@
  * Created by Lynn on 2017/3/3.
  */
     // color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
-var ajaxPre = "http://localhost:8080/BloodborneNode";
+var ajaxPre = "http://localhost:8080/frontend";
 
 //size insize inrate
 
 
 //ajax URL here
 var url = {
-    lineChart: '/getFlow',
-    // keliuAPI:ajaxPre+'/keliu',
-    // visitorAPI:ajaxPre+'/visitor',
-    // visPerAPI:ajaxPre+'/visper'
+    // lineChart: '/frontend/getFlow',
+    lineChart:'/getFlow',
 };
 
 // var lineJSON = [];
@@ -25,30 +23,33 @@ var keliucharts = echarts.init(document.getElementById('traffic'));
 var visitorcharts = echarts.init(document.getElementById('visitor'));
 var vispercharts = echarts.init(document.getElementById('visPer'));
 
-
+var jsonParsed=[];
 function jsonto(json) {
-    for (var i = 0; i < json.length; i++) {
-        keliudata.shift();
-        visperdata.shift();
-        visitordata.shift();
+	// var jsonStr=json;
+	// jsonParsed=eval('('+jsonStr+')');
+    jsonParsed=json;
+    for (var i = 0; i < 10; i++) {
         keliudata.push({
-            name: json[i].time,
-            value: [json[i].time,
-                json[i].size
+            name: jsonParsed[i].time,
+            value: [jsonParsed[i].time,
+            	jsonParsed[i].size
             ]
         });
         visitordata.push({
-            name: json[i].time,
-            value: [json[i].time,
-                json[i].insize
+            name: jsonParsed[i].time,
+            value: [jsonParsed[i].time,
+            	jsonParsed[i].insize
             ]
         });
         visperdata.push({
-            name: json[i].time,
-            value: [json[i].time,
-                json[i].inrate
+            name: jsonParsed[i].time,
+            value: [jsonParsed[i].time,
+            	jsonParsed[i].inrate
             ]
         });
+        keliudata.shift();
+        visperdata.shift();
+        visitordata.shift();
     }
 };
 
