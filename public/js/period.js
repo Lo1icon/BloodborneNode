@@ -1,19 +1,19 @@
 /**
- * Created by Lynn on 2017/3/15.
+ * Created by Lynn on 2017/3/16.
  */
+
 $(function () {
-    var trafficCharts=echarts.init(document.getElementById('trafficChart'));
+    var periodCharts=echarts.init(document.getElementById('periodChart'));
 
     var option = {
         title : {
-            text: '某年客流量和入店量',
-            // subtext: '纯属虚构'
+            text: '来访周期环比',
         },
         tooltip : {
             trigger: 'axis'
         },
         legend: {
-            data:['客流量','入店量','入店率']
+            data:['昨天','今天']
         },
         toolbox: {
             show : true,
@@ -28,29 +28,20 @@ $(function () {
         xAxis : [
             {
                 type : 'category',
-                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                data: ['≤1 day', '≤1 week', '≤1 month', '≤1 season', '≤1/2 year', '≤1 year', 'never'],
             }
         ],
-        yAxis: [
+        yAxis : [
             {
-                type: 'value',
-                name: '人数',
-            },
-            {
-                type: 'value',
-                name: '入店率',
-                min: 0,
-                max: 100,
-                axisLabel: {
-                    formatter: '{value} %'
-                }
+                type : 'value'
             }
         ],
         series : [
             {
-                name:'客流量',
+                name:'昨天',
+                barGap:'1%',
                 type:'bar',
-                data:[200, 400, 700, 1003, 1205, 1360, 1405, 1602, 1320, 1000, 600, 300],
+                data:[ 4.9, 7.0,  25.6, 76.7,  102.2, 32.6, 20.0],
                 markPoint : {
                     data : [
                         {type : 'max', name: '最大值'},
@@ -64,13 +55,12 @@ $(function () {
                 }
             },
             {
-                name:'入店量',
+                name:'今天',
                 type:'bar',
-                data:[120, 250, 390, 460, 580, 700, 905, 1102, 980, 880, 460, 120],
+                barGap:'1%',
+                data:[ 5.9, 26.4,  70.7, 105.6, 48.7, 18.8, 6.0],
                 markPoint : {
                     data : [
-                        // {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
-                        // {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
                         {type : 'max', name: '最大值'},
                         {type : 'min', name: '最小值'}
                     ]
@@ -80,20 +70,14 @@ $(function () {
                         {type : 'average', name : '平均值'}
                     ]
                 }
-            },
-            {
-                name:'入店率',
-                type:'line',
-                yAxisIndex: 1,
-                data:[60, 62.5, 55.7, 45.8, 48.1, 49.8, 68.8, 74.2, 88, 76.7, 70, 50]
             }
         ]
     };
 
-    trafficCharts.setOption(option);
+    periodCharts.setOption(option);
     window.addEventListener("resize", function () {
 
-        trafficCharts.resize();
+        periodCharts.resize();
 
     });
 })

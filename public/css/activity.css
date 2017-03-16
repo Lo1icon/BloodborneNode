@@ -1,0 +1,12 @@
+#restCharts{
+    margin: 20px;
+    height:auto;
+    width:auto;
+    background-color: #FFFFFF;
+}
+
+#activityChart{
+    height:100%;
+    width:100%;
+
+}
