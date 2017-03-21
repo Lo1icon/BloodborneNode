@@ -24,5 +24,7 @@ router.get('/type', function (req, res, next) {
 router.get('/deep', function (req, res, next) {
     res.render('deep', {title: 'Express'});
 });
-
+router.get('/', function (req, res, next) {
+    res.render('index', {title: 'Express'});
+});
 module.exports = router;
