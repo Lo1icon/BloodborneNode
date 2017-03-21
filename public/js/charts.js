@@ -30,7 +30,7 @@ $(function () {
     var option1 = {
         title: {
             text: '客流量',
-            link:"http://127.0.0.1:8080/Bloodborne/traffic",
+            link:"http://www.scarlett.vip/Bloodborne/traffic",
             target:'self'
         },
         tooltip: {
@@ -116,7 +116,7 @@ $(function () {
     var option2 = {
         title: {
             text: '入店量',
-            link:"http://127.0.0.1:8080/Bloodborne/traffic",
+            link:"http://www.scarlett.vip/Bloodborne/traffic",
             target:'self'
         },
         tooltip: {
@@ -205,7 +205,7 @@ $(function () {
     var option3 = {
         title: {
             text: '入店量',
-            link:"http://127.0.0.1:8080/Bloodborne/traffic",
+            link:"http://www.scarlett.vip/Bloodborne/traffic",
             target:'self'
         },
         tooltip: {
@@ -272,7 +272,7 @@ $(function () {
         //#3398DB
         title: {
             text: '来访周期分布',
-            link:"http://127.0.0.1:8080/Bloodborne/period",
+            link:"http://www.scarlett.vip/Bloodborne/period",
             target:'self'
         },
         tooltip: {
@@ -330,7 +330,7 @@ $(function () {
         //#3398DB
         title: {
             text: '驻店时长分布',
-            link:"http://127.0.0.1:8080/Bloodborne/intime",
+            link:"http://www.scarlett.vip/Bloodborne/intime",
             target:'self'
         },
         tooltip: {
@@ -390,7 +390,7 @@ $(function () {
         color:['#c23531','#61a0a8', '#d48265', '#91c7ae'],
         title: {
             text: '顾客活跃度',
-            link:"http://127.0.0.1:8080/Bloodborne/activity",
+            link:"http://www.scarlett.vip/Bloodborne/activity",
             target:'self'
             // left: 'center',
             // top: 20,
@@ -477,7 +477,7 @@ $(function () {
         color:['#c23531', '#91c7ae'],
         title: {
             text: "新老顾客占比",
-            link:"http://127.0.0.1:8080/Bloodborne/type",
+            link:"http://www.scarlett.vip/Bloodborne/type",
             target:'self'
         },
         grid:{
@@ -526,7 +526,7 @@ $(function () {
         color:['#c23531', '#91c7ae','#d48265'],
         title: {
             text: "深访/跳出占比",
-            link:"http://127.0.0.1:8080/Bloodborne/deep",
+            link:"http://www.scarlett.vip/Bloodborne/deep",
             target:'self'
         },
         tooltip : {
