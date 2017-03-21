@@ -50,6 +50,7 @@ $(function () {
             {
                 name:'客流量',
                 type:'bar',
+                barGap:'1%',
                 data:[200, 400, 700, 1003, 1205, 1360, 1405, 1602, 1320, 1000, 600, 300],
                 markPoint : {
                     data : [
@@ -66,6 +67,7 @@ $(function () {
             {
                 name:'入店量',
                 type:'bar',
+                barGap:'1%',
                 data:[120, 250, 390, 460, 580, 700, 905, 1102, 980, 880, 460, 120],
                 markPoint : {
                     data : [
