@@ -199,7 +199,9 @@ $(function () {
 
     var option1 = {
         title: {
-            text: '客流量'
+            text: '客流量',
+            link:"http://127.0.0.1:8080/Bloodborne/traffic",
+            target:'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -282,7 +284,9 @@ $(function () {
 
     var option2 = {
         title: {
-            text: '入店量'
+            text: '入店量',
+            link:"http://127.0.0.1:8080/Bloodborne/traffic",
+            target:'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -367,7 +371,9 @@ $(function () {
 
     var option3 = {
         title: {
-            text: '入店率'
+            text: '入店率',
+            link:"http://127.0.0.1:8080/Bloodborne/traffic",
+            target:'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -432,7 +438,9 @@ $(function () {
         color: ['#c23531'],
         //#3398DB
         title: {
-            text: '来访周期分布'
+            text: '来访周期分布',
+            link:"http://127.0.0.1:8080/Bloodborne/period",
+            target:'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -488,7 +496,9 @@ $(function () {
         color: ['#c23531'],
         //#3398DB
         title: {
-            text: '驻店时长分布'
+            text: '驻店时长分布',
+            link:"http://127.0.0.1:8080/Bloodborne/intime",
+            target:'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -547,6 +557,8 @@ $(function () {
         color: ['#c23531', '#61a0a8', '#d48265', '#91c7ae'],
         title: {
             text: '顾客活跃度',
+            link:"http://127.0.0.1:8080/Bloodborne/activity",
+            target:'self'
             // left: 'center',
             // top: 20,
             // textStyle: {
@@ -629,7 +641,9 @@ $(function () {
     var option8 = {
         color: ['#c23531', '#91c7ae'],
         title: {
-            text: "新老顾客占比"
+            text: "新老顾客占比",
+            link:"http://127.0.0.1:8080/Bloodborne/type",
+            target:'self'
         },
         grid: {
             top: 0,
@@ -676,7 +690,9 @@ $(function () {
     var option9 = {
         color: ['#c23531', '#91c7ae', '#d48265'],
         title: {
-            text: "深访/跳出占比"
+            text: "深访/跳出占比",
+            link:"http://127.0.0.1:8080/Bloodborne/deep",
+            target:'self'
         },
         tooltip: {
             trigger: 'item',
