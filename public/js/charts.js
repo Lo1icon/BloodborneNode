@@ -420,7 +420,7 @@ $(function () {
             {
                 name:'顾客类型',
                 type:'pie',
-                radius : ['20%','65%'],
+                radius : ['20%','55%'],
                 center: ['50%', '50%'],
                 data:[
                     {value:300 , name:'高活跃度'},
@@ -498,7 +498,7 @@ $(function () {
                 type: 'pie',
                 // radius : '55%',
                 radius : ['20%','55%'],
-                center: ['50%', '60%'],
+                center: ['50%', '50%'],
                 data:[
                     {value:200, name:'新顾客'},
                     {value:500, name:'老顾客'}
@@ -545,8 +545,8 @@ $(function () {
             {
                 name: '顾客类别',
                 type: 'pie',
-                radius : ['15%','55%'],
-                center: ['50%', '60%'],
+                radius : ['20%','55%'],
+                center: ['50%', '50%'],
                 data:[
                     {value:0.2, name:'深访率'},
                     {value:0.3, name:'跳出率'},
