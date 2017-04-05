@@ -8,7 +8,7 @@ var ejs = require('ejs');
 
 var index = require('./routes/index');
 var getFlow=require('./routes/getFlow');
-
+var intime=require('./routes/intime');
 
 var app = express();
 
@@ -27,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/Bloodborne', index);
 
 app.use('/getFlow', getFlow);
+
+app.use('/intime',intime);
 
 
 // catch 404 and forward to error handler

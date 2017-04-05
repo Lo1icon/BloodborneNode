@@ -2,7 +2,7 @@
  * Created by Lynn on 2017/3/3.
  */
     // color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
-var ajaxPre = "http://localhost:8080/frontend";
+// var ajaxPre = "http://localhost:8080/frontend";
 
 //size insize inrate
 
@@ -11,6 +11,7 @@ var ajaxPre = "http://localhost:8080/frontend";
 var url = {
     // lineChart: '/frontend/getFlow',
     lineChart:'/getFlow',
+    intime:'/intime'
 };
 
 // var lineJSON = [];
@@ -19,41 +20,74 @@ var url = {
 var keliudata = [];
 var visitordata = [];
 var visperdata = [];
+var vlvdata=[];
+var tsdata=[];
+var vadata=[];
+var nodata=[];
+var jidata=[];
+
 var keliucharts = echarts.init(document.getElementById('traffic'));
 var visitorcharts = echarts.init(document.getElementById('visitor'));
 var vispercharts = echarts.init(document.getElementById('visPer'));
+var vlvcharts = echarts.init(document.getElementById('visLastVis'));
+var tscharts = echarts.init(document.getElementById('timeStay'));
+var vacharts = echarts.init(document.getElementById('visActivity'));
+var nocharts = echarts.init(document.getElementById('newOldVisitor'));
+var jicharts = echarts.init(document.getElementById('jumpVisitor'));
 
-var jsonParsed=[];
-function jsonto(json) {
+var jsonlineParsed=[];
+var jsonintimeParsed=[];
+
+function jsontoline(json) {
 	// var jsonStr=json;
-	// jsonParsed=eval('('+jsonStr+')');
-    jsonParsed=json;
+	// jsonlineParsed=eval('('+jsonStr+')');
+    jsonlineParsed=json;
     for (var i = 0; i < 10; i++) {
         keliudata.push({
-            name: jsonParsed[i].time,
-            value: [jsonParsed[i].time,
-            	jsonParsed[i].size
+            name: jsonlineParsed[i].time,
+            value: [jsonlineParsed[i].time,
+            	jsonlineParsed[i].size
             ]
         });
         visitordata.push({
-            name: jsonParsed[i].time,
-            value: [jsonParsed[i].time,
-            	jsonParsed[i].insize
+            name: jsonlineParsed[i].time,
+            value: [jsonlineParsed[i].time,
+            	jsonlineParsed[i].insize
             ]
         });
         visperdata.push({
-            name: jsonParsed[i].time,
-            value: [jsonParsed[i].time,
-            	jsonParsed[i].inrate
+            name: jsonlineParsed[i].time,
+            value: [jsonlineParsed[i].time,
+            	jsonlineParsed[i].inrate
             ]
         });
         keliudata.shift();
         visperdata.shift();
         visitordata.shift();
     }
-};
+}
+function jsontointime(json) {
+    // var jsonStr=json;
+    // jsonintimeParsed=eval('('+jsonStr+')');
+    jsonintimeParsed=json;
+    tsdata[0]=jsonintimeParsed.f1;
+    tsdata[1]=jsonintimeParsed.f2;
+    tsdata[2]=jsonintimeParsed.f3;
+    tsdata[3]=jsonintimeParsed.f4;
+    tsdata[4]=jsonintimeParsed.f5;
 
-function setOP() {
+    jidata=[{
+        name:'深访率',
+        value:jsonintimeParsed.deep
+    },{
+        name:'跳出率',
+        value:jsonintimeParsed.jump
+    },{
+        name:'正常客流占比',
+        value:(1-jsonintimeParsed.deep-jsonintimeParsed.jump)
+    }];
+}
+function setlineOP() {
     keliucharts.setOption({
         series: [{
             data: keliudata
@@ -70,19 +104,35 @@ function setOP() {
             data: visperdata
         }]
     })
-};
-
-function getJSON() {
-    $.get(url.lineChart, function (json) {
-        jsonto(json)
-        setOP();
+}
+function setintimeOP() {
+    tscharts.setOption({
+        series:[{
+            data:tsdata
+        }]
     });
-    return;
-};
-
+    jicharts.setOption({
+        series:[{
+            data:jidata
+        }]
+    })
+}
+function getlineJSON() {
+    $.get(url.lineChart, function (json) {
+        jsontoline(json);
+        setlineOP();
+    });
+}
+function getintimeJSON() {
+    $.get(url.intime, function (json) {
+        jsontointime(json);
+        setintimeOP();
+    });
+}
 
 setInterval(function () {
-    getJSON();
+    getlineJSON();
+    getintimeJSON();
 }, 3000);
 
 
@@ -112,62 +162,62 @@ $(function () {
             time: "2017/03/04 22:22:22",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         }, {
             time: "2017/03/04 22:22:25",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         }, {
             time: "2017/03/04 22:22:28",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         }, {
             time: "2017/03/04 22:22:31",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         }, {
             time: "2017/03/04 22:22:34",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         }, {
             time: "2017/03/04 22:22:37",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         }, {
             time: "2017/03/04 22:22:40",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         }, {
             time: "2017/03/04 22:22:43",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         }, {
             time: "2017/03/04 22:22:46",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         },
         {
             time: "2017/03/04 22:22:49",
             size: 100,
             insize: 100,
-            inrate: 0.5,
+            inrate: 0.5
 
         }];
 
@@ -430,9 +480,7 @@ $(function () {
 
     });
 
-})
-$(function () {
-    var vlvcharts = echarts.init(document.getElementById('visLastVis'));
+
 
     var option4 = {
         color: ['#c23531'],
@@ -460,7 +508,7 @@ $(function () {
                 data: ['≤1 day', '≤1 week', '≤1 month', '≤1 season', '≤1/2 year', '≤1 year', 'never'],
                 axisTick: {
                     alignWithLabel: true
-                },
+                }
                 // x轴需要全部显示时添加
                 // axisLabel:{
                 //     interval:0
@@ -489,9 +537,7 @@ $(function () {
 
     });
 
-})
-$(function () {
-    var tscharts = echarts.init(document.getElementById('timeStay'));
+
     var option5 = {
         color: ['#c23531'],
         //#3398DB
@@ -547,12 +593,8 @@ $(function () {
 
     });
 
-})
-// $(function () {
-//     var
-// })
-$(function () {
-    var vacharts = echarts.init(document.getElementById('visActivity'));
+
+
     var option7 = {
         color: ['#c23531', '#61a0a8', '#d48265', '#91c7ae'],
         title: {
@@ -622,22 +664,20 @@ $(function () {
 
                 animationType: 'scale',
                 animationEasing: 'elasticOut',
-                animationDelay: function (idx) {
+                animationDelay: function () {
                     return Math.random() * 200;
                 }
             }
         ]
-    }
+    };
     vacharts.setOption(option7);
     window.addEventListener("resize", function () {
 
         vacharts.resize();
 
     });
-})
 
-$(function () {
-    var nocharts = echarts.init(document.getElementById('newOldVisitor'));
+
     var option8 = {
         color: ['#c23531', '#91c7ae'],
         title: {
@@ -646,7 +686,7 @@ $(function () {
             target:'self'
         },
         grid: {
-            top: 0,
+            top: 0
         },
         tooltip: {
             trigger: 'item',
@@ -673,20 +713,19 @@ $(function () {
                         shadowBlur: 10,
                         shadowOffsetX: 0,
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    },
+                    }
                 }
             }
         ]
-    }
+    };
     nocharts.setOption(option8);
     window.addEventListener("resize", function () {
 
         nocharts.resize();
 
     });
-})
-$(function () {
-    var jicharts = echarts.init(document.getElementById('jumpVisitor'));
+
+
     var option9 = {
         color: ['#c23531', '#91c7ae', '#d48265'],
         title: {
@@ -724,15 +763,15 @@ $(function () {
                         shadowBlur: 10,
                         shadowOffsetX: 0,
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    },
+                    }
                 }
             }
         ]
-    }
+    };
     jicharts.setOption(option9);
     window.addEventListener("resize", function () {
 
         jicharts.resize();
 
     });
-})
+});
