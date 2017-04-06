@@ -11,7 +11,8 @@
 var url = {
     // lineChart: '/frontend/getFlow',
     lineChart:'/getFlow',
-    intime:'/intime'
+    intime:'/intime',
+    T:'/T'
 };
 
 // var lineJSON = [];
@@ -37,6 +38,7 @@ var jicharts = echarts.init(document.getElementById('jumpVisitor'));
 
 var jsonlineParsed=[];
 var jsonintimeParsed=[];
+var jsonTParsed=[];
 
 function jsontoline(json) {
 	// var jsonStr=json;
@@ -87,6 +89,17 @@ function jsontointime(json) {
         value:(1-jsonintimeParsed.deep-jsonintimeParsed.jump)
     }];
 }
+function jsontoT(json) {
+    // var jsonStr=json;
+    // jsonintimeParsed=eval('('+jsonStr+')');
+    jsonTParsed=json;
+    vlvdata[0]=jsonTParsed.t1;
+    vlvdata[1]=jsonTParsed.t2;
+    vlvdata[2]=jsonTParsed.t3;
+    vlvdata[3]=jsonTParsed.t4;
+    vlvdata[4]=jsonTParsed.t5;
+    vlvdata[5]=jsonTParsed.t6;
+}
 function setlineOP() {
     keliucharts.setOption({
         series: [{
@@ -117,6 +130,13 @@ function setintimeOP() {
         }]
     })
 }
+function setTOP() {
+    vlvcharts.setOption({
+        series:[{
+            data:vlvdata
+        }]
+    })
+}
 function getlineJSON() {
     $.get(url.lineChart, function (json) {
         jsontoline(json);
@@ -129,10 +149,16 @@ function getintimeJSON() {
         setintimeOP();
     });
 }
-
+function getTJSON() {
+    $.get(url.T,function (json) {
+        jsontoT(json);
+        setTOP();
+    });
+}
 setInterval(function () {
     getlineJSON();
     getintimeJSON();
+    getTJSON();
 }, 3000);
 
 
@@ -505,7 +531,7 @@ $(function () {
         xAxis: [
             {
                 type: 'category',
-                data: ['≤1 day', '≤1 week', '≤1 month', '≤1 season', '≤1/2 year', '≤1 year', 'never'],
+                data: ['≤1 day', '≤1 week', '≤1 month', '≤1 season', '≤1/2 year', '≤1 year'],
                 axisTick: {
                     alignWithLabel: true
                 }
@@ -525,7 +551,7 @@ $(function () {
                 name: '顾客人数',
                 type: 'bar',
                 barWidth: '60%',
-                data: [10, 52, 200, 334, 390, 330, 220]
+                data: [10, 52, 200, 334, 390, 330]
             }
         ]
     };
