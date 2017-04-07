@@ -1,7 +1,7 @@
 /**
  * Created by Lynn on 2017/3/3.
  */
-    // color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
+// color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
 // var ajaxPre = "http://localhost:8080/frontend";
 
 //size insize inrate
@@ -12,7 +12,9 @@ var url = {
     // lineChart: '/frontend/getFlow',
     lineChart:'/getFlow',
     intime:'/intime',
-    T:'/T'
+    T:'/T',
+    va:'/va',
+    No:'/No'
 };
 
 // var lineJSON = [];
@@ -39,6 +41,8 @@ var jicharts = echarts.init(document.getElementById('jumpVisitor'));
 var jsonlineParsed=[];
 var jsonintimeParsed=[];
 var jsonTParsed=[];
+var jsonVAParsed=[];
+var jsonNoParsed=[];
 
 function jsontoline(json) {
 	// var jsonStr=json;
@@ -100,6 +104,26 @@ function jsontoT(json) {
     vlvdata[4]=jsonTParsed.t5;
     vlvdata[5]=jsonTParsed.t6;
 }
+function jsontoVA(json) {
+    // var jsonStr=json;
+    // jsonintimeParsed=eval('('+jsonStr+')');
+    jsonVAParsed=json;
+    vadata=[
+        {value: jsonVAParsed.high, name: '高活跃度'},
+        {value: jsonVAParsed.medium, name: '中活跃度'},
+        {value: jsonVAParsed.low, name: '低活跃度'},
+        {value: jsonVAParsed.sleep, name: '沉睡客户'}
+    ]
+}
+function jsontoNo(json) {
+    // var jsonStr=json;
+    // jsonintimeParsed=eval('('+jsonStr+')');
+    jsonNoParsed=json;
+    nodata=[
+        {value: jsonNoParsed.newVisitor, name: '新顾客'},
+        {value: jsonNoParsed.oldVisitor, name: '老顾客'}
+    ]
+}
 function setlineOP() {
     keliucharts.setOption({
         series: [{
@@ -137,6 +161,23 @@ function setTOP() {
         }]
     })
 }
+function setVAOP() {
+    vacharts.setOption({
+        series:[{
+            data:vadata.sort(function (a, b) {
+                return a.value - b.value
+            })
+        }]
+    })
+}
+function setNoOP() {
+    nocharts.setOption({
+        series:[{
+            data:nodata
+        }]
+    })
+}
+
 function getlineJSON() {
     $.get(url.lineChart, function (json) {
         jsontoline(json);
@@ -155,11 +196,32 @@ function getTJSON() {
         setTOP();
     });
 }
+function getVAJSON() {
+    $.get(url.va,function (json) {
+        jsontoVA(json);
+        setVAOP();
+    });
+}
+function getNoJSON() {
+    $.get(url.No,function (json) {
+        jsontoNo(json);
+        setNoOP();
+    })
+}
 setInterval(function () {
     getlineJSON();
     getintimeJSON();
     getTJSON();
+    getVAJSON();
+    getNoJSON();
 }, 3000);
+
+// setInterval(function () {
+//     getintimeJSON();
+//     getTJSON();
+//     getVAJSON();
+//     getNoJSON();
+// })
 
 
 // var keliudata = [];
