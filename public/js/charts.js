@@ -9,15 +9,16 @@
 
 //ajax URL here
 var url = {
-    // lineChart: '/frontend/getFlow',
-    lineChart:'/getFlow',
-    intime:'/intime',
-    T:'/T',
-    va:'/va',
-    No:'/No'
+    lineChart: '/frontend/getFlow',
+    intime:'/frontend/intime',
+    activity:'/frontend/activity',
+    No:'/frontend/No'
+    // lineChart:'/getFlow',
+    // intime:'/intime',
+    // T:'/T',
+    // va:'/va',
+    // No:'/No'
 };
-
-// var lineJSON = [];
 
 
 var keliudata = [];
@@ -41,13 +42,12 @@ var jicharts = echarts.init(document.getElementById('jumpVisitor'));
 var jsonlineParsed=[];
 var jsonintimeParsed=[];
 var jsonTParsed=[];
-var jsonVAParsed=[];
 var jsonNoParsed=[];
 
 function jsontoline(json) {
-	// var jsonStr=json;
-	// jsonlineParsed=eval('('+jsonStr+')');
-    jsonlineParsed=json;
+	var jsonStr=json;
+	jsonlineParsed=eval('('+jsonStr+')');
+    // jsonlineParsed=json;
     for (var i = 0; i < 10; i++) {
         keliudata.push({
             name: jsonlineParsed[i].time,
@@ -73,9 +73,11 @@ function jsontoline(json) {
     }
 }
 function jsontointime(json) {
-    // var jsonStr=json;
-    // jsonintimeParsed=eval('('+jsonStr+')');
-    jsonintimeParsed=json;
+    var jsonStr=json;
+    jsonintimeParsed=eval('('+jsonStr+')');
+
+    // jsonintimeParsed=json;
+
     tsdata[0]=jsonintimeParsed.f1;
     tsdata[1]=jsonintimeParsed.f2;
     tsdata[2]=jsonintimeParsed.f3;
@@ -94,31 +96,27 @@ function jsontointime(json) {
     }];
 }
 function jsontoT(json) {
-    // var jsonStr=json;
-    // jsonintimeParsed=eval('('+jsonStr+')');
-    jsonTParsed=json;
+    var jsonStr=json;
+    jsonTParsed=eval('('+jsonStr+')');
+    // jsonTParsed=json;
     vlvdata[0]=jsonTParsed.t1;
     vlvdata[1]=jsonTParsed.t2;
     vlvdata[2]=jsonTParsed.t3;
     vlvdata[3]=jsonTParsed.t4;
     vlvdata[4]=jsonTParsed.t5;
     vlvdata[5]=jsonTParsed.t6;
-}
-function jsontoVA(json) {
-    // var jsonStr=json;
-    // jsonintimeParsed=eval('('+jsonStr+')');
-    jsonVAParsed=json;
+
     vadata=[
-        {value: jsonVAParsed.high, name: '高活跃度'},
-        {value: jsonVAParsed.medium, name: '中活跃度'},
-        {value: jsonVAParsed.low, name: '低活跃度'},
-        {value: jsonVAParsed.sleep, name: '沉睡客户'}
+        {value: jsonTParsed.high, name: '高活跃度'},
+        {value: jsonTParsed.medium, name: '中活跃度'},
+        {value: jsonTParsed.low, name: '低活跃度'},
+        {value: jsonTParsed.sleep, name: '沉睡客户'}
     ]
 }
 function jsontoNo(json) {
-    // var jsonStr=json;
-    // jsonintimeParsed=eval('('+jsonStr+')');
-    jsonNoParsed=json;
+    var jsonStr=json;
+    jsonNoParsed=eval('('+jsonStr+')');
+    // jsonNoParsed=json;
     nodata=[
         {value: jsonNoParsed.newVisitor, name: '新顾客'},
         {value: jsonNoParsed.oldVisitor, name: '老顾客'}
@@ -159,16 +157,15 @@ function setTOP() {
         series:[{
             data:vlvdata
         }]
-    })
-}
-function setVAOP() {
+    });
+
     vacharts.setOption({
         series:[{
             data:vadata.sort(function (a, b) {
                 return a.value - b.value
             })
         }]
-    })
+    });
 }
 function setNoOP() {
     nocharts.setOption({
@@ -191,15 +188,9 @@ function getintimeJSON() {
     });
 }
 function getTJSON() {
-    $.get(url.T,function (json) {
+    $.get(url.activity,function (json) {
         jsontoT(json);
         setTOP();
-    });
-}
-function getVAJSON() {
-    $.get(url.va,function (json) {
-        jsontoVA(json);
-        setVAOP();
     });
 }
 function getNoJSON() {
@@ -212,7 +203,6 @@ setInterval(function () {
     getlineJSON();
     getintimeJSON();
     getTJSON();
-    getVAJSON();
     getNoJSON();
 }, 3000);
 
