@@ -93,8 +93,10 @@
     position: absolute;
     top:0;
     right:0;
-    height:10px;
-    width:50px;
+    height:30%;
+    width:35%;
     background: transparent;
     color: #000;
+    font-size: 1.1em;
+    text-align: right;
 }
