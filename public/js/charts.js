@@ -18,6 +18,7 @@ var url = {
 };
 
 // var lineJSON = [];
+//时间段
 $(function () {
     var date=new Date();
     var year=date.getFullYear();
@@ -30,7 +31,28 @@ $(function () {
 
     $('#visActivity').next().html("时间段："+monthString);
 })
+//地图
 
+$(function () {
+    var map=new BMap.Map("restCharts");
+    var lon=116.325409;
+    var lat=39.996147;
+    var point=new BMap.Point(lon,lat);
+    var convertor = new BMap.Convertor();
+    var pointArr = [];
+    pointArr.push(point);
+    convertor.translate(pointArr, 1, 5,function (data) {
+
+
+        map.centerAndZoom(data.points[0],15);
+
+        var marker=new BMap.Marker(data.points[0]);
+
+        map.addOverlay(marker);
+    })
+
+
+})
 var keliudata = [];
 var visitordata = [];
 var visperdata = [];
