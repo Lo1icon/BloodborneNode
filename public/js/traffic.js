@@ -12,11 +12,15 @@ $(function () {
         tooltip : {
             trigger: 'axis'
         },
+        grid:{
+            top:90
+        },
         legend: {
             data:['客流量','入店量','入店率']
         },
         toolbox: {
             show : true,
+            top:50,
             feature : {
                 dataView : {show: true, readOnly: false},
                 magicType : {show: true, type: ['line', 'bar']},

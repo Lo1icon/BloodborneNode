@@ -71,7 +71,7 @@
     z-index:100;
 }
 .homeData{
-    height:31%;
+    height:32%;
     width:32%;
     background: #FFFFFF !important;
     position: relative;
@@ -85,6 +85,25 @@
     height:100%;
     width:100%;
 }
+#probeMap{
+    height:100%;
+    width:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 100;
+}
+#mapTitle{
+    position: absolute;
+    right:0;
+    top:0;
+    height:32%;
+    width:32%;
+    background-color: transparent;
+    z-index: 101;
+    color: #000;
+    text-align: right;
+}
 .charts{
     height:100%;
     width:100%;
@@ -97,6 +116,6 @@
     width:35%;
     background: transparent;
     color: #000;
-    font-size: 1.1em;
+    font-size: 1em;
     text-align: right;
 }

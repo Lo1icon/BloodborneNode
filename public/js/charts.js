@@ -34,7 +34,7 @@ $(function () {
 //地图
 
 $(function () {
-    var map=new BMap.Map("bblogo");
+    var map=new BMap.Map("probeMap");
     var lon=116.325409;
     var lat=39.996147;
     var point=new BMap.Point(lon,lat);
