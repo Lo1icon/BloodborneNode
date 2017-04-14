@@ -242,13 +242,21 @@ function getNoJSON() {
         setNoOP();
     })
 }
-setInterval(function () {
-    getlineJSON();
+function setOther() {
     getintimeJSON();
     getTJSON();
     getVAJSON();
     getNoJSON();
+}
+$(function () {
+    setOther();
+})
+setInterval(function () {
+    getlineJSON();
 }, 3000);
+setInterval(function () {
+    setOther();
+}, 30000);
 
 // setInterval(function () {
 //     getintimeJSON();

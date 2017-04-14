@@ -13,6 +13,8 @@ var T = require('./routes/T');
 var va=require('./routes/va');
 var No=require('./routes/No');
 
+var api=require('./routes/api');
+
 var app = express();
 
 // view engine setup
@@ -35,6 +37,8 @@ app.use('/intime', intime);
 app.use('/T', T);
 app.use('/va',va);
 app.use('/No',No);
+
+app.use('/api',api);
 
 
 // catch 404 and forward to error handler
