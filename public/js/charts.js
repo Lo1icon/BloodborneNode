@@ -34,7 +34,7 @@ $(function () {
 //地图
 
 $(function () {
-    var map=new BMap.Map("restCharts");
+    var map=new BMap.Map("bblogo");
     var lon=116.325409;
     var lat=39.996147;
     var point=new BMap.Point(lon,lat);
@@ -44,12 +44,13 @@ $(function () {
     convertor.translate(pointArr, 1, 5,function (data) {
 
 
-        map.centerAndZoom(data.points[0],15);
+        map.centerAndZoom(data.points[0],14);
 
         var marker=new BMap.Marker(data.points[0]);
 
         map.addOverlay(marker);
     })
+    map.enableScrollWheelZoom();
 
 
 })
