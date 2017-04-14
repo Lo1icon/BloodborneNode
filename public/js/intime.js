@@ -5,7 +5,7 @@
 $(function () {
     var intimeCharts=echarts.init(document.getElementById('intimeChart'));
 
-    var url='/Bloodborne/api/intimeData';
+    var url='/api/intimeData';
 
 
     var option = {
@@ -20,6 +20,7 @@ $(function () {
         },
         toolbox: {
             show : true,
+            top:100,
             feature : {
                 dataView : {show: true, readOnly: false},
                 magicType : {show: true, type: ['line', 'bar']},
@@ -28,6 +29,7 @@ $(function () {
             }
         },
         grid: {
+            top:100,
             left: '3%',
             right: '4%',
             bottom: '3%',
