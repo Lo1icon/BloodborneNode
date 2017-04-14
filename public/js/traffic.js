@@ -13,7 +13,7 @@ $(function () {
             trigger: 'axis'
         },
         grid:{
-            top:90
+            top:150
         },
         legend: {
             data:['客流量','入店量','入店率']
