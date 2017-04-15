@@ -1,7 +1,13 @@
 /**
  * Created by Lynn on 2017/3/18.
  */
+$(function () {
+    $('#datePicker').datepicker();
 
+    $('#submitDate').click(function () {
+        alert($('#datePicker').datepicker('getDate'));
+    })
+});
 $(function () {
     var intimeCharts=echarts.init(document.getElementById('intimeChart'));
 

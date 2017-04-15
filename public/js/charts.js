@@ -249,6 +249,7 @@ function setOther() {
     getNoJSON();
 }
 $(function () {
+    getlineJSON();
     setOther();
 })
 setInterval(function () {
