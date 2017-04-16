@@ -2,17 +2,35 @@
  * Created by Lynn on 2017/3/18.
  */
 $(function () {
+    var intimeCharts=echarts.init(document.getElementById('intimeChart'));
+
+    var url1='/api/intimeData1';
+    var url2='/api/intimeData2';
+
     $('#datePicker').datepicker();
 
     $('#submitDate').click(function () {
-        alert($('#datePicker').datepicker('getDate'));
-    })
-});
-$(function () {
-    var intimeCharts=echarts.init(document.getElementById('intimeChart'));
+        // alert($('#datePicker').datepicker('getDate'));
+        var dateStr=$('#datePicker').datepicker('getDate').toString();
+        $.get(url2,dateStr,function (json) {
+            var jsonParsed=json;
+            // jsonParsed=eval('('+json+')');
 
-    var url='/api/intimeData';
-
+            intimeCharts.setOption({
+                series:[{
+                    data:jsonParsed.f1
+                },{
+                    data:jsonParsed.f2
+                },{
+                    data:jsonParsed.f3
+                },{
+                    data:jsonParsed.f4
+                },{
+                    data:jsonParsed.f5
+                }]
+            })
+        })
+    });
 
     var option = {
         title: {
@@ -106,7 +124,9 @@ $(function () {
         intimeCharts.resize();
 
     });
-    $.get(url,function (json) {
+    var today=new Date();
+    var todayStr=today.toString();
+    $.get(url1,todayStr,function (json) {
         intimeCharts.setOption({
             series:[{
                 data:json.f1
