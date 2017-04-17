@@ -242,22 +242,48 @@ function getNoJSON() {
         setNoOP();
     })
 }
-function setOther() {
-    getintimeJSON();
-    getTJSON();
-    getVAJSON();
-    getNoJSON();
-}
+
 $(function () {
     getlineJSON();
-    setOther();
+
+    setTimeout(function () {
+        getVAJSON();
+        setTimeout(function () {
+            getNoJSON();
+            setTimeout(function () {
+                getTJSON();
+                setTimeout(function () {
+                    getintimeJSON();
+                },1000);
+            },1000);
+        },1000);
+    },1000);
+    // getintimeJSON();
+    // getTJSON();
+    // getVAJSON();
+    // getNoJSON();
+
 })
+
 setInterval(function () {
     getlineJSON();
 }, 3000);
+
 setInterval(function () {
-    setOther();
-}, 30000);
+
+    setTimeout(function () {
+        getVAJSON();
+        setTimeout(function () {
+            getNoJSON();
+            setTimeout(function () {
+                getTJSON();
+                setTimeout(function () {
+                    getintimeJSON();
+                },1000);
+            },1000);
+        },1000);
+    },1000);
+}, 300000);
 
 // setInterval(function () {
 //     getintimeJSON();

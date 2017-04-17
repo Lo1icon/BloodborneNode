@@ -10,3 +10,20 @@
     width:100%;
 
 }
+
+#dateContainer{
+    position: absolute;
+    height:25px;
+    width:200px;
+    right:20px;
+    top:20px;
+    z-index: 101;
+}
+
+#datePicker{
+    width:120px;
+    height:25px;
+    position: absolute;
+    right:0;
+    top:0;
+}

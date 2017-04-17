@@ -20,6 +20,17 @@ var json2={
     f4:[10, 22, 41, 64, 90, 110,120, 132, 151, 204, 250, 310,320, 2802, 241, 214, 190, 170,150, 132, 101, 84, 50, 23],
     f5:[10, 22, 41, 64, 90, 110,120, 132, 151, 204, 250, 310,320, 282, 241, 214, 190, 170,150, 132, 101, 84, 50, 23]
 };
+
+//来访周期
+var json3={
+    period:[4,7,11,15,25, 36,22, 32, 24,42,120]
+};
+
+
+
+var json4={
+    period:[4,7,11,15,25, 336,22, 32, 24,42,120]
+};
 router.get('/intimeData1',function (req,res,next) {
 
     res.json(json1);
@@ -27,5 +38,13 @@ router.get('/intimeData1',function (req,res,next) {
 router.get('/intimeData2',function (req,res,next) {
 
     res.json(json2);
+});
+router.get('/periodData1',function (req,res,next) {
+
+    res.json(json3);
+});
+router.get('/periodData2',function (req,res,next) {
+
+    res.json(json4);
 });
 module.exports = router;
