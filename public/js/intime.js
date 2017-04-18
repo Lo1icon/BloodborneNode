@@ -4,15 +4,15 @@
 $(function () {
     var intimeCharts=echarts.init(document.getElementById('intimeChart'));
 
-    var url1='/api/intimeData1';
-    var url2='/api/intimeData2';
+    var url='/api/intimeData';
+    // var url2='/api/intimeData2';
 
     $('#datePicker').datepicker();
 
     $('#submitDate').click(function () {
         // alert($('#datePicker').datepicker('getDate'));
         var dateStr=$('#datePicker').datepicker('getDate').toString();
-        $.get(url2,dateStr,function (json) {
+        $.get(url,dateStr,function (json) {
             var jsonParsed=json;
             // jsonParsed=eval('('+json+')');
 
@@ -126,7 +126,7 @@ $(function () {
     });
     var today=new Date();
     var todayStr=today.toString();
-    $.get(url1,todayStr,function (json) {
+    $.get(url,todayStr,function (json) {
         intimeCharts.setOption({
             series:[{
                 data:json.f1
