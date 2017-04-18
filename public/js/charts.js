@@ -6,6 +6,7 @@
 
 //size insize inrate
 
+var probeNum=1;
 
 //ajax URL here
 var url = {
@@ -213,31 +214,31 @@ function setNoOP() {
 }
 
 function getlineJSON() {
-    $.get(url.lineChart, function (json) {
+    $.get(url.lineChart,probeNum, function (json) {
         jsontoline(json);
         setlineOP();
     });
 }
 function getintimeJSON() {
-    $.get(url.intime, function (json) {
+    $.get(url.intime,probeNum, function (json) {
         jsontointime(json);
         setintimeOP();
     });
 }
 function getTJSON() {
-    $.get(url.T,function (json) {
+    $.get(url.T,probeNum,function (json) {
         jsontoT(json);
         setTOP();
     });
 }
 function getVAJSON() {
-    $.get(url.va,function (json) {
+    $.get(url.va,probeNum,function (json) {
         jsontoVA(json);
         setVAOP();
     });
 }
 function getNoJSON() {
-    $.get(url.No,function (json) {
+    $.get(url.No,probeNum,function (json) {
         jsontoNo(json);
         setNoOP();
     })
