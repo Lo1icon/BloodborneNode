@@ -12,7 +12,11 @@ var json1 ={
     t3:400,
     t4:300,
     t5:100,
-    t6:50
+    t6:50,
+    high:100,
+    medium:200,
+    low:150,
+    sleep:250
 };
 // var json0=[];
 // for(var i=0;i<10;i++){

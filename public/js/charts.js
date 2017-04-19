@@ -6,48 +6,47 @@
 
 //size insize inrate
 
-var probeNum=1;
+var probeNum = 1;
 
 //ajax URL here
 var url = {
     // lineChart: '/frontend/getFlow',
-    lineChart:'/getFlow',
-    intime:'/intime',
-    T:'/T',
-    va:'/va',
-    No:'/No'
+    lineChart: '/getFlow',
+    intime: '/intime',
+    T: '/T',
+    No: '/No'
 };
 
 // var lineJSON = [];
 //时间段
 $(function () {
-    var date=new Date();
-    var year=date.getFullYear();
-    var month=date.getMonth()+1;
-    var day=date.getDate();
-    var hour=date.getHours();
-    var minute=date.getMinutes();
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
 
-    var monthString=year+'/'+(month-1)+'-'+year+'/'+month;
+    var monthString = year + '/' + (month - 1) + '-' + year + '/' + month;
 
-    $('#visActivity').next().html("时间段："+monthString);
+    $('#visActivity').next().html("时间段：" + monthString);
 })
 //地图
 
 $(function () {
-    var map=new BMap.Map("probeMap");
-    var lon=116.325409;
-    var lat=39.996147;
-    var point=new BMap.Point(lon,lat);
+    var map = new BMap.Map("probeMap");
+    var lon = 116.325409;
+    var lat = 39.996147;
+    var point = new BMap.Point(lon, lat);
     var convertor = new BMap.Convertor();
     var pointArr = [];
     pointArr.push(point);
-    convertor.translate(pointArr, 1, 5,function (data) {
+    convertor.translate(pointArr, 1, 5, function (data) {
 
 
-        map.centerAndZoom(data.points[0],14);
+        map.centerAndZoom(data.points[0], 14);
 
-        var marker=new BMap.Marker(data.points[0]);
+        var marker = new BMap.Marker(data.points[0]);
 
         map.addOverlay(marker);
     })
@@ -58,11 +57,11 @@ $(function () {
 var keliudata = [];
 var visitordata = [];
 var visperdata = [];
-var vlvdata=[];
-var tsdata=[];
-var vadata=[];
-var nodata=[];
-var jidata=[];
+var vlvdata = [];
+var tsdata = [];
+var vadata = [];
+var nodata = [];
+var jidata = [];
 
 var keliucharts = echarts.init(document.getElementById('traffic'));
 var visitorcharts = echarts.init(document.getElementById('visitor'));
@@ -73,33 +72,32 @@ var vacharts = echarts.init(document.getElementById('visActivity'));
 var nocharts = echarts.init(document.getElementById('newOldVisitor'));
 var jicharts = echarts.init(document.getElementById('jumpVisitor'));
 
-var jsonlineParsed=[];
-var jsonintimeParsed=[];
-var jsonTParsed=[];
-var jsonVAParsed=[];
-var jsonNoParsed=[];
+var jsonlineParsed = [];
+var jsonintimeParsed = [];
+var jsonTParsed = [];
+var jsonNoParsed = [];
 
 function jsontoline(json) {
-	// var jsonStr=json;
-	// jsonlineParsed=eval('('+jsonStr+')');
-    jsonlineParsed=json;
+    // var jsonStr=json;
+    // jsonlineParsed=eval('('+jsonStr+')');
+    jsonlineParsed = json;
     for (var i = 0; i < 10; i++) {
         keliudata.push({
             name: jsonlineParsed[i].time,
             value: [jsonlineParsed[i].time,
-            	jsonlineParsed[i].size
+                jsonlineParsed[i].size
             ]
         });
         visitordata.push({
             name: jsonlineParsed[i].time,
             value: [jsonlineParsed[i].time,
-            	jsonlineParsed[i].insize
+                jsonlineParsed[i].insize
             ]
         });
         visperdata.push({
             name: jsonlineParsed[i].time,
             value: [jsonlineParsed[i].time,
-            	jsonlineParsed[i].inrate
+                jsonlineParsed[i].inrate
             ]
         });
         keliudata.shift();
@@ -110,51 +108,52 @@ function jsontoline(json) {
 function jsontointime(json) {
     // var jsonStr=json;
     // jsonintimeParsed=eval('('+jsonStr+')');
-    jsonintimeParsed=json;
-    tsdata[0]=jsonintimeParsed.f1;
-    tsdata[1]=jsonintimeParsed.f2;
-    tsdata[2]=jsonintimeParsed.f3;
-    tsdata[3]=jsonintimeParsed.f4;
-    tsdata[4]=jsonintimeParsed.f5;
+    jsonintimeParsed = json;
+    tsdata[0] = jsonintimeParsed.f1;
+    tsdata[1] = jsonintimeParsed.f2;
+    tsdata[2] = jsonintimeParsed.f3;
+    tsdata[3] = jsonintimeParsed.f4;
+    tsdata[4] = jsonintimeParsed.f5;
 
-    jidata=[{
-        name:'深访率',
-        value:jsonintimeParsed.deep
-    },{
-        name:'跳出率',
-        value:jsonintimeParsed.jump
-    },{
-        name:'正常客流占比',
-        value:(1-jsonintimeParsed.deep-jsonintimeParsed.jump)
+    jidata = [{
+        name: '深访率',
+        value: jsonintimeParsed.deep
+    }, {
+        name: '跳出率',
+        value: jsonintimeParsed.jump
+    }, {
+        name: '正常客流占比',
+        value: (1 - jsonintimeParsed.deep - jsonintimeParsed.jump)
     }];
 }
 function jsontoT(json) {
     // var jsonStr=json;
-    // jsonintimeParsed=eval('('+jsonStr+')');
-    jsonTParsed=json;
-    vlvdata[0]=jsonTParsed.t1;
-    vlvdata[1]=jsonTParsed.t2;
-    vlvdata[2]=jsonTParsed.t3;
-    vlvdata[3]=jsonTParsed.t4;
-    vlvdata[4]=jsonTParsed.t5;
-    vlvdata[5]=jsonTParsed.t6;
+    // jsonTParsed=eval('('+jsonStr+')');
+    jsonTParsed = json;
+    vlvdata[0] = jsonTParsed.t1;
+    vlvdata[1] = jsonTParsed.t2;
+    vlvdata[2] = jsonTParsed.t3;
+    vlvdata[3] = jsonTParsed.t4;
+    vlvdata[4] = jsonTParsed.t5;
+    vlvdata[5] = jsonTParsed.t6;
+
+    vadata = [
+        {value: jsonTParsed.high, name: '高活跃度'},
+        {value: jsonTParsed.medium, name: '中活跃度'},
+        {value: jsonTParsed.low, name: '低活跃度'},
+        {value: jsonTParsed.sleep, name: '沉睡客户'}
+    ];
 }
-function jsontoVA(json) {
-    // var jsonStr=json;
-    // jsonintimeParsed=eval('('+jsonStr+')');
-    jsonVAParsed=json;
-    vadata=[
-        {value: jsonVAParsed.high, name: '高活跃度'},
-        {value: jsonVAParsed.medium, name: '中活跃度'},
-        {value: jsonVAParsed.low, name: '低活跃度'},
-        {value: jsonVAParsed.sleep, name: '沉睡客户'}
-    ]
-}
+// function jsontoVA(json) {
+//     // var jsonStr=json;
+//     // jsonVAParsed=eval('('+jsonStr+')');
+//
+// }
 function jsontoNo(json) {
     // var jsonStr=json;
     // jsonintimeParsed=eval('('+jsonStr+')');
-    jsonNoParsed=json;
-    nodata=[
+    jsonNoParsed = json;
+    nodata = [
         {value: jsonNoParsed.newVisitor, name: '新顾客'},
         {value: jsonNoParsed.oldVisitor, name: '老顾客'}
     ]
@@ -179,66 +178,60 @@ function setlineOP() {
 }
 function setintimeOP() {
     tscharts.setOption({
-        series:[{
-            data:tsdata
+        series: [{
+            data: tsdata
         }]
     });
     jicharts.setOption({
-        series:[{
-            data:jidata
+        series: [{
+            data: jidata
         }]
     })
 }
 function setTOP() {
     vlvcharts.setOption({
-        series:[{
-            data:vlvdata
+        series: [{
+            data: vlvdata
         }]
-    })
-}
-function setVAOP() {
+    });
     vacharts.setOption({
-        series:[{
-            data:vadata.sort(function (a, b) {
+        series: [{
+            data: vadata.sort(function (a, b) {
                 return a.value - b.value
             })
         }]
-    })
+    });
 }
+
 function setNoOP() {
     nocharts.setOption({
-        series:[{
-            data:nodata
+        series: [{
+            data: nodata
         }]
     })
 }
 
 function getlineJSON() {
-    $.get(url.lineChart,probeNum, function (json) {
+    $.get(url.lineChart, probeNum, function (json) {
         jsontoline(json);
         setlineOP();
     });
 }
 function getintimeJSON() {
-    $.get(url.intime,probeNum, function (json) {
+    $.get(url.intime, probeNum, function (json) {
         jsontointime(json);
         setintimeOP();
     });
 }
 function getTJSON() {
-    $.get(url.T,probeNum,function (json) {
+    $.get(url.T, probeNum, function (json) {
         jsontoT(json);
         setTOP();
     });
 }
-function getVAJSON() {
-    $.get(url.va,probeNum,function (json) {
-        jsontoVA(json);
-        setVAOP();
-    });
-}
+
 function getNoJSON() {
-    $.get(url.No,probeNum,function (json) {
+    $.get(url.No, probeNum, function (json) {
         jsontoNo(json);
         setNoOP();
     })
@@ -247,18 +240,16 @@ function getNoJSON() {
 $(function () {
     getlineJSON();
 
+
     setTimeout(function () {
-        getVAJSON();
+        getTJSON();
         setTimeout(function () {
             getNoJSON();
             setTimeout(function () {
-                getTJSON();
-                setTimeout(function () {
-                    getintimeJSON();
-                },1000);
-            },1000);
-        },1000);
-    },1000);
+                getintimeJSON();
+            }, 1000);
+        }, 1000);
+    }, 1000);
     // getintimeJSON();
     // getTJSON();
     // getVAJSON();
@@ -271,19 +262,15 @@ setInterval(function () {
 }, 3000);
 
 setInterval(function () {
-
     setTimeout(function () {
-        getVAJSON();
+        getTJSON();
         setTimeout(function () {
             getNoJSON();
             setTimeout(function () {
-                getTJSON();
-                setTimeout(function () {
-                    getintimeJSON();
-                },1000);
-            },1000);
-        },1000);
-    },1000);
+                getintimeJSON();
+            }, 1000);
+        }, 1000);
+    }, 1000);
 }, 300000);
 
 // setInterval(function () {
@@ -408,8 +395,8 @@ $(function () {
     var option1 = {
         title: {
             text: '客流量',
-            link:"http://127.0.0.1:8080/Bloodborne/traffic",
-            target:'self'
+            link: "http://127.0.0.1:8080/Bloodborne/traffic",
+            target: 'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -493,8 +480,8 @@ $(function () {
     var option2 = {
         title: {
             text: '入店量',
-            link:"http://127.0.0.1:8080/Bloodborne/traffic",
-            target:'self'
+            link: "http://127.0.0.1:8080/Bloodborne/traffic",
+            target: 'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -580,8 +567,8 @@ $(function () {
     var option3 = {
         title: {
             text: '入店率',
-            link:"http://127.0.0.1:8080/Bloodborne/traffic",
-            target:'self'
+            link: "http://127.0.0.1:8080/Bloodborne/traffic",
+            target: 'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -639,14 +626,13 @@ $(function () {
     });
 
 
-
     var option4 = {
         color: ['#c23531'],
         //#3398DB
         title: {
             text: '来访周期分布',
-            link:"http://127.0.0.1:8080/Bloodborne/period",
-            target:'self'
+            link: "http://127.0.0.1:8080/Bloodborne/period",
+            target: 'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -701,8 +687,8 @@ $(function () {
         //#3398DB
         title: {
             text: '驻店时长分布',
-            link:"http://127.0.0.1:8080/Bloodborne/intime",
-            target:'self'
+            link: "http://127.0.0.1:8080/Bloodborne/intime",
+            target: 'self'
         },
         tooltip: {
             trigger: 'axis',
@@ -752,13 +738,12 @@ $(function () {
     });
 
 
-
     var option7 = {
         color: ['#c23531', '#61a0a8', '#d48265', '#91c7ae'],
         title: {
             text: '顾客活跃度',
-            link:"http://127.0.0.1:8080/Bloodborne/activity",
-            target:'self'
+            link: "http://127.0.0.1:8080/Bloodborne/activity",
+            target: 'self'
             // left: 'center',
             // top: 20,
             // textStyle: {
@@ -840,8 +825,8 @@ $(function () {
         color: ['#c23531', '#91c7ae'],
         title: {
             text: "新老顾客占比",
-            link:"http://127.0.0.1:8080/Bloodborne/type",
-            target:'self'
+            link: "http://127.0.0.1:8080/Bloodborne/type",
+            target: 'self'
         },
         grid: {
             top: 0
@@ -888,8 +873,8 @@ $(function () {
         color: ['#c23531', '#91c7ae', '#d48265'],
         title: {
             text: "深访/跳出占比",
-            link:"http://127.0.0.1:8080/Bloodborne/deep",
-            target:'self'
+            link: "http://127.0.0.1:8080/Bloodborne/deep",
+            target: 'self'
         },
         tooltip: {
             trigger: 'item',
