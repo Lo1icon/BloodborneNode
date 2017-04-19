@@ -128,6 +128,16 @@ $(function () {
                 }
             },
             calculable: true,
+            toolbox: {
+                show : true,
+                top:100,
+                feature : {
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
             grid: {
                 y: 80,
                 y2: 100
@@ -158,15 +168,76 @@ $(function () {
             series: [{
                 name: '客流量',
                 yAxisIndex: 0,
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                },
+                barGap:'1%',
                 type: 'bar',
+                smooth:'true',
+                itemStyle: {
+                    normal: {
+
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(194, 53,49, 1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(194, 53,49, 0.5)'
+                        }]),
+                        shadowColor: 'rgba(0, 0, 0, 0.5)',
+                        shadowBlur: 10
+
+                    }
+                }
             }, {
                 name: '入店量',
                 yAxisIndex: 0,
+                smooth:'true',
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                },
                 type: 'bar',
+                itemStyle: {
+                    normal: {
+
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(97, 160,168, 1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(97, 160,168, 0.5)'
+                        }]),
+                        shadowColor: 'rgba(0, 0, 0, 0.5)',
+                        shadowBlur: 10
+
+                    }
+                }
             },{
                 name: '入店率',
                 yAxisIndex: 1,
+                smooth:'true',
                 type: 'line',
+                itemStyle:{
+                    normal:{
+                        color:'#91c7ae'
+                    }
+                }
             }]
         },
         options: [
@@ -257,6 +328,10 @@ $(function () {
         trafficCharts.resize();
 
     });
+    $('.probeID').click(function () {
+        $(".probeID").removeClass("chosen");
+        $(this).addClass("chosen");
+    })
 })
 // var option = {
 //     title : {

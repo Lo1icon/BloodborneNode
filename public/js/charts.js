@@ -1,7 +1,7 @@
 /**
  * Created by Lynn on 2017/3/3.
  */
-// color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
+color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
 // var ajaxPre = "http://localhost:8080/frontend";
 
 //size insize inrate
@@ -196,9 +196,7 @@ function setTOP() {
     });
     vacharts.setOption({
         series: [{
-            data: vadata.sort(function (a, b) {
-                return a.value - b.value
-            })
+            data: vadata
         }]
     });
 }
@@ -393,6 +391,7 @@ $(function () {
     jsonFirst(json1);
 
     var option1 = {
+
         title: {
             text: '客流量',
             link: "http://127.0.0.1:8080/Bloodborne/traffic",
@@ -410,6 +409,13 @@ $(function () {
                 animation: false
             }
         },
+        visualMap: {
+            show: false,
+            type: 'continuous',
+            seriesIndex: 0,
+            min: 0,
+            max: 2000
+        },
         xAxis: {
             type: 'time',
             splitLine: {
@@ -425,6 +431,8 @@ $(function () {
         },
         series: [{
             name: '客流量模拟数据',
+            smooth:'true',
+
             type: 'line',
             showSymbol: false,
             hoverAnimation: false,
@@ -483,6 +491,13 @@ $(function () {
             link: "http://127.0.0.1:8080/Bloodborne/traffic",
             target: 'self'
         },
+        visualMap: {
+            show: false,
+            type: 'continuous',
+            seriesIndex: 0,
+            min: 0,
+            max: 1000
+        },
         tooltip: {
             trigger: 'axis',
             formatter: function (params) {
@@ -509,6 +524,7 @@ $(function () {
         },
         series: [{
             name: '入店量模拟数据',
+            smooth:'true',
             type: 'line',
             showSymbol: false,
             hoverAnimation: false,
@@ -570,6 +586,13 @@ $(function () {
             link: "http://127.0.0.1:8080/Bloodborne/traffic",
             target: 'self'
         },
+        visualMap: {
+            show: false,
+            type: 'continuous',
+            seriesIndex: 0,
+            min: 0,
+            max: 1
+        },
         tooltip: {
             trigger: 'axis',
             formatter: function (params) {
@@ -598,6 +621,8 @@ $(function () {
             name: '入店率模拟数据',
             type: 'line',
             showSymbol: false,
+            smooth:'true',
+
             hoverAnimation: false,
             data: visperdata
         }]
@@ -669,7 +694,22 @@ $(function () {
                 name: '顾客人数',
                 type: 'bar',
                 barWidth: '60%',
-                data: [10, 52, 200, 334, 390, 330]
+                data: [10, 52, 200, 334, 390, 330],
+                itemStyle: {
+                    normal: {
+
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(194, 53,49, 1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(194, 53,49, 0.3)'
+                        }]),
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                        shadowBlur: 10
+
+                    }
+                }
             }
         ]
     };
@@ -725,7 +765,22 @@ $(function () {
                 name: '人数',
                 type: 'bar',
                 barWidth: '60%',
-                data: [10, 100, 200, 400, 334]
+                data: [10, 100, 200, 400, 334],
+                itemStyle: {
+                    normal: {
+
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(194, 53,49, 1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(194, 53,49, 0.3)'
+                        }]),
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                        shadowBlur: 10
+
+                    }
+                }
             }
         ]
     };
@@ -739,10 +794,10 @@ $(function () {
 
 
     var option7 = {
-        color: ['#c23531', '#61a0a8', '#d48265', '#91c7ae'],
+
         title: {
             text: '顾客活跃度',
-            link: "http://127.0.0.1:8080/Bloodborne/activity",
+            link: "http://127.0.0.1:8080/Bloodborne/period",
             target: 'self'
             // left: 'center',
             // top: 20,
@@ -760,28 +815,19 @@ $(function () {
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
 
-        visualMap: {
-            show: false,
-            min: 80,
-            max: 600,
-            inRange: {
-                colorLightness: [0, 1]
-            }
-        },
         series: [
             {
+                color: ['#c23531', '#61a0a8', '#d48265', '#91c7ae'],
                 name: '顾客类型',
                 type: 'pie',
-                radius: ['20%', '65%'],
+                radius: ['10%', '65%'],
                 center: ['50%', '50%'],
                 data: [
                     {value: 300, name: '高活跃度'},
                     {value: 400, name: '中活跃度'},
                     {value: 150, name: '低活跃度'},
                     {value: 200, name: '沉睡客户'}
-                ].sort(function (a, b) {
-                    return a.value - b.value
-                }),
+                ],
                 roseType: 'angle',
                 label: {
                     normal: {
@@ -796,8 +842,14 @@ $(function () {
                         length2: 20
                     }
                 },
+                // itemStyle: {
+                //     normal: {
+                //         color: '#c23531',
+                //     }
+                // },
                 itemStyle: {
-                    normal: {},
+                    normal: {
+                    },
                     emphasis: {
                         shadowBlur: 10,
                         shadowOffsetX: 0,
@@ -805,11 +857,7 @@ $(function () {
                     }
                 },
 
-                animationType: 'scale',
-                animationEasing: 'elasticOut',
-                animationDelay: function () {
-                    return Math.random() * 200;
-                }
+
             }
         ]
     };

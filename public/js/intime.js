@@ -75,6 +75,7 @@ $(function () {
             {
                 name:'<1min',
                 type:'line',
+                smooth:'true',
                 stack: '总量',
                 areaStyle: {normal: {}},
                 data:[10, 22, 41, 64, 90, 110,120, 132, 151, 204, 250, 310,320, 282, 241, 214, 190, 170,150, 132, 101, 84, 50, 23]
@@ -82,6 +83,7 @@ $(function () {
             {
                 name:'1~3min',
                 type:'line',
+                smooth:'true',
                 stack: '总量',
                 areaStyle: {normal: {}},
                 data:[10, 22, 41, 64, 90, 110,120, 132, 151, 204, 250, 310,320, 282, 241, 214, 190, 170,150, 132, 101, 84, 50, 23]
@@ -89,6 +91,7 @@ $(function () {
             {
                 name:'3~5min',
                 type:'line',
+                smooth:'true',
                 stack: '总量',
                 areaStyle: {normal: {}},
 
@@ -97,6 +100,7 @@ $(function () {
             {
                 name:'5~10min',
                 type:'line',
+                smooth:'true',
                 stack: '总量',
                 areaStyle: {normal: {}},
 
@@ -106,6 +110,7 @@ $(function () {
                 name:'>10min',
                 type:'line',
                 stack: '总量',
+                smooth:'true',
                 label: {
                     normal: {
                         show: true,

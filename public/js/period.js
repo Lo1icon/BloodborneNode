@@ -27,10 +27,13 @@ $(function () {
 
     var option = {
         title : {
-            text: '来访周期',
+            text: '来访周期和活跃度分布',
         },
         tooltip : {
-            trigger: 'axis'
+            trigger: 'item',
+            axisPointer:{
+                type:'shadow'
+            }
         },
 
         toolbox: {
@@ -59,7 +62,23 @@ $(function () {
                 name:'人数',
                 barGap:'1%',
                 type:'bar',
+                color:['#dd5965'],
+                smooth:'true',
                 data:[ 4,7,11,15,25, 36,22, 32, 24,42,120],
+                itemStyle: {
+                    normal: {
+
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(17, 168,171, 1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(17, 168,171, 0.1)'
+                        }]),
+                        shadowColor: 'rgba(0, 0, 0, 0.1)',
+                        shadowBlur: 10
+                    }
+                }
                 // markPoint : {
                 //     data : [
                 //         {type : 'max', name: '最大值'},
@@ -71,6 +90,26 @@ $(function () {
                 //         {type : 'average', name: '平均值'}
                 //     ]
                 // }
+            },
+            {
+                name:'顾客活跃度',
+                type:'pie',
+                center: ['25%', '35%'],
+                radius: '28%',
+                data: [
+                    {
+                        name:'高活跃度',
+                        value:200
+                    },
+                    {
+                        name:'中活跃度',
+                        value:300
+                    },
+                    {
+                        name:'低活跃度',
+                        value:150
+                    }
+                ]
             }
         ]
     };

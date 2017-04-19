@@ -12,7 +12,10 @@ $(function () {
             text: '新/老顾客'
         },
         tooltip : {
-            trigger: 'axis'
+            trigger: 'axis',
+            axisPointer:{
+                type:'shadow'
+            }
         },
         legend: {
             data:['新顾客','老顾客']
@@ -30,7 +33,7 @@ $(function () {
         xAxis : [
             {
                 type : 'category',
-                data: ['≤1min', '1~3min', '3~5min', '5~10min', '>10min'],
+                data: ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
             }
         ],
         yAxis : [
@@ -42,8 +45,10 @@ $(function () {
             {
                 name:'新顾客',
                 barGap:'1%',
+                smooth:'true',
+
                 type:'bar',
-                data:[ 7.0,  25.6, 76.7,  102.2, 32.6],
+                data:[ 7,  25,50, 76,  102,130,164,180,140,112,72, 32],
                 markPoint : {
                     data : [
                         {type : 'max', name: '最大值'},
@@ -54,13 +59,31 @@ $(function () {
                     data : [
                         {type : 'average', name: '平均值'}
                     ]
+                },
+                itemStyle: {
+                    normal: {
+
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(200, 53,49, 1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(200, 53,49, 0.3)'
+                        }]),
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                        shadowBlur: 10
+
+                    }
                 }
+
             },
             {
                 name:'老顾客',
                 type:'bar',
+                smooth:'true',
+
                 barGap:'1%',
-                data:[  26.4,  70.7, 105.6, 48.7, 18.8],
+                data:[   125,160,120,100,70 ,48, 18,7,26,46,69,109],
                 markPoint : {
                     data : [
                         {type : 'max', name: '最大值'},
@@ -71,6 +94,20 @@ $(function () {
                     data : [
                         {type : 'average', name : '平均值'}
                     ]
+                },
+                itemStyle: {
+                    normal: {
+
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(17, 168,171, 1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(17, 168,171, 0.3)'
+                        }]),
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                        shadowBlur: 10
+                    }
                 }
             }
         ]

@@ -64,7 +64,8 @@
         <!--<div id="header">Bloodborne</div>-->
         <div id="menuBar">
             <div id="jquery-accordion-menu" class="jquery-accordion-menu black">
-                <div class="jquery-accordion-menu-header" id="form">Bloodborne</div>
+                <div class="jquery-accordion-menu-header" id="form" style="user-select: none">Bloodborne</div>
+
                 <ul id="demo-list">
 
                     <li class=" homeLoad"><a href="http://127.0.0.1:8080/Bloodborne/index"><i class="fa fa-home "></i>Home </a></li>
@@ -74,7 +75,7 @@
 
                             <li><a href="http://127.0.0.1:8080/Bloodborne/period">来访周期 </a></li>
                             <li><a href="http://127.0.0.1:8080/Bloodborne/intime">驻店时长 </a></li>
-                            <li><a href="http://127.0.0.1:8080/Bloodborne/activity">顾客活跃度 </a></li>
+                            <!--<li><a href="http://127.0.0.1:8080/Bloodborne/activity">顾客活跃度 </a></li>-->
                             <li><a href="http://127.0.0.1:8080/Bloodborne/type">新老顾客 </a></li>
                             <!--<li><a href="http://127.0.0.1:8080/Bloodborne/deep">深访率 </a></li>-->
                             <li><a href="http://127.0.0.1:8080/Bloodborne/deep">深访/跳出率 </a></li>
@@ -87,8 +88,13 @@
 
                 </ul>
                 <div class="jquery-accordion-menu-footer">
+                    <div class="probeChoose">
+                        <button class="probeID chosen">探针A</button>
+                        <button class="probeID">探针B</button>
+                    </div>
                     <input  class="filterinput" id="datePicker" placeholder="请选择日期">
                     <button class="searchDate fa fa-search"></button>
+
                 </div>
 
             </div>
@@ -133,10 +139,10 @@
     $(function () {
         //顶部导航切换
         $("#demo-list li").click(function () {
-            $("#demo-list li.active").removeClass("active")
+            $("#demo-list li.active").removeClass("active");
             $(this).addClass("active");
         })
-    })
+    });
 </script>
 
 </html>
