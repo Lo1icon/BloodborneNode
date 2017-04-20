@@ -6,8 +6,6 @@
 
 //size insize inrate
 
-var probeNum = 1;
-
 //ajax URL here
 var url = {
     // lineChart: '/frontend/getFlow',
@@ -20,11 +18,14 @@ var url = {
     intime: '/intime',
     T: '/period',
     No: '/newOld',
-    gps:'/gps'
+    gps: '/api/gps'
 };
-var probeNum=0;
+var probeNum = 0;
+var params = {
+    probeID: probeNum
+};
 //时间段
-$(function () {
+function updateTime() {
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -32,57 +33,89 @@ $(function () {
     var hour = date.getHours();
     var minute = date.getMinutes();
 
-    var monthString = year + '/' + (month - 1) + '-' + year + '/' + month;
 
-    $('#visActivity').next().html("时间段：" + monthString);
-})
+    var monthAgo = new Date((date - 30 * 24 * 3600 * 1000));
+    var dayAgo = new Date((date - 24 * 3600 * 1000));
+    var hourAgo = new Date((date - 3600 * 1000));
+
+    var monthStr = monthAgo.getFullYear() + '/' + (monthAgo.getMonth() + 1) + '-' + year + '/' + month;
+    var dayStr = (dayAgo.getMonth() + 1) + '/' + dayAgo.getDate() + '-' + month + '/' + day;
+    var hourStr = hour+':00 - '+ hour+':' + minute;
+    $('#visActivity').next().html("时间段：" + monthStr);
+    $('#newOldVisitor').next().html("时间段：" + dayStr);
+    $('#jumpVisitor').next().html("时间段：" + hourStr);
+    $('#visLastVis').next().html("时间段：" + monthStr);
+    $('#timeStay').next().html("时间段：" + hourStr);
+}
 //地图
 
 $(function () {
     var map = new BMap.Map("probeMap");
-    var lon = 116.325409;
-    var lat = 39.996147;
-    var point = new BMap.Point(lon, lat);
-    var convertor = new BMap.Convertor();
-    var pointArr = [];
-    pointArr.push(point);
-    convertor.translate(pointArr, 1, 5, function (data) {
+    var lon = 116.62;
+    var lat = 40.32;
+    params = {
+        probeID: probeNum
+    };
+    function newMap() {
+        var point = new BMap.Point(lon, lat);
+        var convertor = new BMap.Convertor();
+        var pointArr = [];
+        pointArr.push(point);
+        convertor.translate(pointArr, 1, 5, function (data) {
 
 
-        map.centerAndZoom(data.points[0], 14);
+            map.centerAndZoom(data.points[0], 14);
 
-        var marker = new BMap.Marker(data.points[0]);
+            var marker = new BMap.Marker(data.points[0]);
 
-        map.addOverlay(marker);
-    })
-    map.enableScrollWheelZoom();
+            map.addOverlay(marker);
+        });
+        map.enableScrollWheelZoom();
+    }
+
+    function getGPS(params) {
+        $.get(url.gps, params, function (json) {
+            // var GPSParsed=eval('('+json+')');
+            var GPSParsed = json;
+
+            lon = GPSParsed.lon;
+            lat = GPSParsed.lat;
+        });
+        newMap();
+
+    }
+
+    getGPS(params);
+
 
     $('#datePicker').datepicker();
 
     $('.probeID').click(function () {
         $(".probeID").removeClass("chosen");
         $(this).addClass("chosen");
-        if($('#probeA').hasClass('chosen')){
-            probeNum=0;
-        }else{
-            probeNum=1;
+        if ($('#probeA').hasClass('chosen')) {
+            probeNum = 0;
+        } else {
+            probeNum = 1;
+        }
+        params = {
+            probeID: probeNum
         };
-
-        getlineJSON();
-
+        getlineJSON(params);
+        getGPS(params);
         setTimeout(function () {
-            getTJSON();
+            getTJSON(params);
             setTimeout(function () {
-                getNoJSON();
+                getNoJSON(params);
                 setTimeout(function () {
-                    getintimeJSON();
+                    getintimeJSON(params);
                 }, 1000);
             }, 1000);
         }, 1000);
     });
 
 
-})
+});
 var keliudata = [];
 var visitordata = [];
 var visperdata = [];
@@ -234,42 +267,41 @@ function setNoOP() {
     })
 }
 
-function getlineJSON() {
-    $.get(url.lineChart, probeNum, function (json) {
+function getlineJSON(params) {
+    $.get(url.lineChart, params, function (json) {
         jsontoline(json);
         setlineOP();
     });
 }
-function getintimeJSON() {
-    $.get(url.intime, probeNum, function (json) {
+function getintimeJSON(params) {
+    $.get(url.intime, params, function (json) {
         jsontointime(json);
         setintimeOP();
     });
 }
-function getTJSON() {
-    $.get(url.T, probeNum, function (json) {
+function getTJSON(params) {
+    $.get(url.T, params, function (json) {
         jsontoT(json);
         setTOP();
     });
 }
 
-function getNoJSON() {
-    $.get(url.No, probeNum, function (json) {
+function getNoJSON(params) {
+    $.get(url.No, params, function (json) {
         jsontoNo(json);
         setNoOP();
     })
 }
 
 $(function () {
-    getlineJSON();
-
+    getlineJSON(params);
 
     setTimeout(function () {
-        getTJSON();
+        getTJSON(params);
         setTimeout(function () {
-            getNoJSON();
+            getNoJSON(params);
             setTimeout(function () {
-                getintimeJSON();
+                getintimeJSON(params);
             }, 1000);
         }, 1000);
     }, 1000);
@@ -277,23 +309,24 @@ $(function () {
     // getTJSON();
     // getVAJSON();
     // getNoJSON();
-
+    updateTime();
 });
 
 setInterval(function () {
-    getlineJSON();
+    getlineJSON(params);
 }, 3000);
 
 setInterval(function () {
     setTimeout(function () {
-        getTJSON();
+        getTJSON(params);
         setTimeout(function () {
-            getNoJSON();
+            getNoJSON(params);
             setTimeout(function () {
-                getintimeJSON();
+                getintimeJSON(params);
             }, 1000);
         }, 1000);
     }, 1000);
+    updateTime();
 }, 300000);
 
 $(function () {
@@ -429,7 +462,7 @@ $(function () {
         },
         series: [{
             name: '客流量模拟数据',
-            smooth:'true',
+            smooth: 'true',
             areaStyle: {
                 normal: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -532,7 +565,7 @@ $(function () {
         },
         series: [{
             name: '入店量模拟数据',
-            smooth:'true',
+            smooth: 'true',
             type: 'line',
             areaStyle: {
                 normal: {
@@ -640,7 +673,7 @@ $(function () {
             name: '入店率模拟数据',
             type: 'line',
             showSymbol: false,
-            smooth:'true',
+            smooth: 'true',
             areaStyle: {
                 normal: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -877,8 +910,7 @@ $(function () {
                 //     }
                 // },
                 itemStyle: {
-                    normal: {
-                    },
+                    normal: {},
                     emphasis: {
                         shadowBlur: 10,
                         shadowOffsetX: 0,

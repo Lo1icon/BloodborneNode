@@ -1,18 +1,60 @@
 /**
  * Created by Lynn on 2017/3/18.
  */
-/**
- * Created by Lynn on 2017/3/18.
- */
-/**
- * Created by Lynn on 2017/3/16.
- */
+
 $(function () {
+    var probeNum=0;
+
     var deepCharts=echarts.init(document.getElementById('deepChart'));
+    var url='/api/deep';
+    // var url='/details/deep';
+    var today=new Date();
+    var todayStr=today.toString();
+
+    var params={
+        probeID:probeNum,
+        date:todayStr
+    };
+    function getData(params) {
+        $.get(url,params,function (json) {
+            var jsonParsed=json;
+            //var jsonParsed=eval('('+json+')');
+
+            deepCharts.setOption({
+                series:[{
+                    data:jsonParsed.deep
+                },{
+                    data:jsonParsed.jump
+                }]
+            })
+        })
+    }
+    getData(params);
+
     $('#datePicker').datepicker();
     $('.probeID').click(function () {
         $(".probeID").removeClass("chosen");
         $(this).addClass("chosen");
+        if($('#probeA').hasClass('chosen')){
+            probeNum=0;
+        }else{
+            probeNum=1;
+        }
+        params={
+            probeID:probeNum,
+            date:todayStr
+        };
+        getData(params);
+    });
+    $('.searchDate').click(function () {
+        // alert($('#datePicker').datepicker('getDate'));
+        var dateStr=$('#datePicker').datepicker('getDate').toString();
+        params={
+            probeID:probeNum,
+            date:dateStr
+        };
+        getData(params);
+
     });
     var option = {
         title: {

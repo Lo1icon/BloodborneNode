@@ -23,7 +23,10 @@ var json2={
 
 //来访周期
 var json3={
-    period:[4,7,11,15,25, 36,22, 32, 24,42,120]
+    period:[4,7,11,15,25, 36,22, 32, 24,42,120],
+    high:100,
+    medium:200,
+    low:150
 };
 
 //客流数据格式
@@ -83,6 +86,18 @@ var json5={
 var json4={
     period:[4,7,11,15,25, 336,22, 32, 24,42,120]
 };
+var json6={
+    newVisitor:[7,25,50, 76,102,130,164,180,140,112,72, 32],
+    oldVisitor:[125,160,120,100,70,48,18,7,26,46,69,109]
+};
+var json7={
+    deep:[7,25,50,76,102,130,164],
+    jump:[125,160,120,100,70,48,18]
+};
+var json8={
+    lon:116.325409,
+    lat:39.996147
+};
 router.get('/intimeData1',function (req,res,next) {
 
     res.json(json1);
@@ -102,5 +117,17 @@ router.get('/periodData2',function (req,res,next) {
 router.get('/trafficData',function (req,res,next) {
 
     res.json(json5);
+});
+router.get('/newOld',function (req,res,next) {
+
+    res.json(json6);
+});
+router.get('/deep',function (req,res,next) {
+
+    res.json(json7);
+});
+router.get('/gps',function (req,res,next) {
+
+    res.json(json8);
 });
 module.exports = router;

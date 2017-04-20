@@ -2,22 +2,24 @@
  * Created by Lynn on 2017/3/18.
  */
 $(function () {
+    var probeNum=0;
+
     var intimeCharts=echarts.init(document.getElementById('intimeChart'));
 
-    var url='/api/intimeData';
-    // var url2='/api/intimeData2';
+    var url='/api/intimeData1';
+    // var url='/details/intime';
+    var today=new Date();
+    var todayStr=today.toString();
 
-    $('#datePicker').datepicker();
-    $('.probeID').click(function () {
-        $(".probeID").removeClass("chosen");
-        $(this).addClass("chosen");
-    })
-    $('#submitDate').click(function () {
-        // alert($('#datePicker').datepicker('getDate'));
-        var dateStr=$('#datePicker').datepicker('getDate').toString();
-        $.get(url,dateStr,function (json) {
+    var params={
+        probeID:probeNum,
+        date:todayStr
+    };
+    getData(params);
+    function getData(params) {
+        $.get(url,params,function (json) {
             var jsonParsed=json;
-            // jsonParsed=eval('('+json+')');
+            //var jsonParsed=eval('('+json+')');
 
             intimeCharts.setOption({
                 series:[{
@@ -33,6 +35,32 @@ $(function () {
                 }]
             })
         })
+    }
+    $('#datePicker').datepicker();
+    $('.probeID').click(function () {
+        $(".probeID").removeClass("chosen");
+        $(this).addClass("chosen");
+        if($('#probeA').hasClass('chosen')){
+            probeNum=0;
+        }else{
+            probeNum=1;
+        }
+        params={
+            probeID:probeNum,
+            date:todayStr
+        };
+        getData(params);
+    });
+
+    $('.searchDate').click(function () {
+        // alert($('#datePicker').datepicker('getDate'));
+        var dateStr=$('#datePicker').datepicker('getDate').toString();
+        params={
+            probeID:probeNum,
+            date:dateStr
+        };
+        getData(params);
+
     });
 
     var option = {
@@ -131,24 +159,8 @@ $(function () {
         intimeCharts.resize();
 
     });
-    var today=new Date();
-    var todayStr=today.toString();
-    $.get(url,todayStr,function (json) {
-        intimeCharts.setOption({
-            series:[{
-                data:json.f1
-            },{
-                data:json.f2
-            },{
-                data:json.f3
-            },{
-                data:json.f4
-            },{
-                data:json.f5
-            }]
-        });
-    })
-})
+
+});
 
 // var option = {
 //     title : {
