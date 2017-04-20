@@ -1,7 +1,7 @@
 /**
  * Created by Lynn on 2017/3/3.
  */
-color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
+// color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
 // var ajaxPre = "http://localhost:8080/frontend";
 
 //size insize inrate
@@ -11,13 +11,18 @@ var probeNum = 1;
 //ajax URL here
 var url = {
     // lineChart: '/frontend/getFlow',
+    // intime: '/frontend/intime',
+    // T: '/frontend/period',
+    // No: '/frontend/newOld',
+    // gps:'/frontend/gps'
+
     lineChart: '/getFlow',
     intime: '/intime',
     T: '/period',
-    No: '/newOld'
+    No: '/newOld',
+    gps:'/gps'
 };
-
-// var lineJSON = [];
+var probeNum=0;
 //时间段
 $(function () {
     var date = new Date();
@@ -57,7 +62,25 @@ $(function () {
     $('.probeID').click(function () {
         $(".probeID").removeClass("chosen");
         $(this).addClass("chosen");
-    })
+        if($('#probeA').hasClass('chosen')){
+            probeNum=0;
+        }else{
+            probeNum=1;
+        };
+
+        getlineJSON();
+
+        setTimeout(function () {
+            getTJSON();
+            setTimeout(function () {
+                getNoJSON();
+                setTimeout(function () {
+                    getintimeJSON();
+                }, 1000);
+            }, 1000);
+        }, 1000);
+    });
+
 
 })
 var keliudata = [];
@@ -150,14 +173,10 @@ function jsontoT(json) {
         {value: jsonTParsed.sleep, name: '沉睡客户'}
     ];
 }
-// function jsontoVA(json) {
-//     // var jsonStr=json;
-//     // jsonVAParsed=eval('('+jsonStr+')');
-//
-// }
+
 function jsontoNo(json) {
     // var jsonStr=json;
-    // jsonintimeParsed=eval('('+jsonStr+')');
+    // jsonNoParsed=eval('('+jsonStr+')');
     jsonNoParsed = json;
     nodata = [
         {value: jsonNoParsed.newVisitor, name: '新顾客'},
@@ -277,33 +296,6 @@ setInterval(function () {
     }, 1000);
 }, 300000);
 
-// setInterval(function () {
-//     getintimeJSON();
-//     getTJSON();
-//     getVAJSON();
-//     getNoJSON();
-// })
-
-
-// var keliudata = [];
-// var now=+new Date();
-// var threeSec = 3* 1000;
-// var value = Math.random() * 1000;
-// for (var i = 0; i < 400; i++) {
-//     keliudata.push(randomData());
-// }
-//
-// function randomData() {
-//     now = new Date(+now + threeSec);
-//     value = value + Math.random() * 21 - 10;
-//     return {
-//         name: now.toString(),
-//         value: [
-//             ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds()),
-//             Math.round(value)
-//         ]
-//     }
-// }
 $(function () {
 
     var json1 = [

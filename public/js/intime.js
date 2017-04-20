@@ -47,7 +47,6 @@ $(function () {
         },
         toolbox: {
             show : true,
-            top:100,
             feature : {
                 dataView : {show: true, readOnly: false},
                 magicType : {show: true, type: ['line', 'bar']},
