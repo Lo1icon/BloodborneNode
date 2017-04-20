@@ -6,7 +6,11 @@
  */
 $(function () {
     var typeCharts=echarts.init(document.getElementById('typeChart'));
-
+    $('#datePicker').datepicker();
+    $('.probeID').click(function () {
+        $(".probeID").removeClass("chosen");
+        $(this).addClass("chosen");
+    });
     var option = {
         title: {
             text: '新/老顾客'

@@ -53,6 +53,13 @@ $(function () {
     map.enableScrollWheelZoom();
 
 
+    $('#datePicker').datepicker();
+
+    $('.probeID').click(function () {
+        $(".probeID").removeClass("chosen");
+        $(this).addClass("chosen");
+    })
+
 })
 var keliudata = [];
 var visitordata = [];
@@ -253,7 +260,7 @@ $(function () {
     // getVAJSON();
     // getNoJSON();
 
-})
+});
 
 setInterval(function () {
     getlineJSON();
@@ -432,7 +439,17 @@ $(function () {
         series: [{
             name: '客流量模拟数据',
             smooth:'true',
-
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(199, 237, 250,1)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(199, 237, 250,0.1)'
+                    }], false)
+                }
+            },
             type: 'line',
             showSymbol: false,
             hoverAnimation: false,
@@ -526,6 +543,17 @@ $(function () {
             name: '入店量模拟数据',
             smooth:'true',
             type: 'line',
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(199, 237, 250,1)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(199, 237, 250,0.1)'
+                    }], false)
+                }
+            },
             showSymbol: false,
             hoverAnimation: false,
             data: visitordata
@@ -622,7 +650,17 @@ $(function () {
             type: 'line',
             showSymbol: false,
             smooth:'true',
-
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(199, 237, 250,1)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(199, 237, 250,0.1)'
+                    }], false)
+                }
+            },
             hoverAnimation: false,
             data: visperdata
         }]
@@ -855,7 +893,7 @@ $(function () {
                         shadowOffsetX: 0,
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
-                },
+                }
 
 
             }

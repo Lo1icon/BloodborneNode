@@ -88,7 +88,7 @@ $(function () {
                 playInterval: 2000
             },
             title: {
-                text: '探针A客流情况',
+                text: '探针A客流情况'
             },
             tooltip: {
                 trigger: 'axis'
@@ -99,38 +99,11 @@ $(function () {
                 data: ['上客量', '下客量'],
                 selected: {
                     '上客量': true,
-                    '下客量': true,
+                    '下客量': true
                 }
             },
-            toolbox: {
-                show: true,
-                orient: 'vertical',
-                x: 'right',
-                y: 'center',
-                eature: {
-                    mark: {
-                        'show': true
-                    },
-                    dataView: {
-                        show: true,
-                        readOnly: true
-                    },
-                    magicType: {
-                        show: true,
-                        type: ['line', 'bar', 'stack', 'tiled']
-                    },
-                    restore: {
-                        show: true
-                    },
-                    saveAsImage: {
-                        show: true
-                    }
-                }
-            },
-            calculable: true,
             toolbox: {
                 show : true,
-                top:100,
                 feature : {
                     dataView : {show: true, readOnly: false},
                     magicType : {show: true, type: ['line', 'bar']},
@@ -138,6 +111,8 @@ $(function () {
                     saveAsImage : {show: true}
                 }
             },
+            calculable: true,
+
             grid: {
                 y: 80,
                 y2: 100
@@ -155,13 +130,13 @@ $(function () {
             yAxis: [
                 {
                     type: 'value',
-                    name: '人数',
+                    name: '人数'
                 },
                 {
                     type: 'value',
                     name: '入店率',
                     min: 0,
-                    max: 1,
+                    max: 1
 
                 }
             ],
@@ -243,7 +218,7 @@ $(function () {
         options: [
              {
             title: {
-                text: '探针A客流情况',
+                text: '探针A客流情况'
             },
             series: [{
                 data: [5, 6, 0, 28,5, 6, 0, 28, 8, 24, 11, 16, 14, 0, 31, 0, 2, 0, 4, 0, 3, 2, 6, 6]
@@ -254,7 +229,7 @@ $(function () {
             }]
         }, {
             title: {
-                text: '探针A客流情况',
+                text: '探针A客流情况'
             },
             series: [{
                 data: [45, 0, 64, 134,45, 0, 64, 134, 188, 43, 109, 12, 0, 97, 6, 0, 6, 4, 4, 10, 0, 17, 9, 22]
@@ -265,7 +240,7 @@ $(function () {
             }]
         }, {
             title: {
-                text: '探针A客流情况',
+                text: '探针A客流情况'
             },
             series: [{
                 data: [110, 2, 111, 176,110, 2, 111, 176, 73, 59, 181, 9, 0, 86, 83, 6, 5, 11, 5, 7, 1, 28, 28, 62]
@@ -276,7 +251,7 @@ $(function () {
             }]
         }, {
             title: {
-                text: '探针A客流情况',
+                text: '探针A客流情况'
             },
             series: [{
                 'data': [94, 7, 64, 55,94, 7, 64, 55, 56, 41, 70, 1, 0, 35, 44, 2, 17, 25, 8, 18, 9, 60, 52, 87]
@@ -287,7 +262,7 @@ $(function () {
             }]
         }, {
             title: {
-                text: '探针A客流情况',
+                text: '探针A客流情况'
             },
             series: [{
                 'data': [70, 4, 79, 61,70, 4, 79, 61, 42, 39, 116, 10, 0, 19, 40, 3, 4, 27, 19, 13, 4, 28]
@@ -298,7 +273,7 @@ $(function () {
             }]
         }, {
             title: {
-                text: '探针A客流情况',
+                text: '探针A客流情况'
             },
             series: [{
                 'data': [29, 4, 70, 44,29, 4, 70, 44, 37, 45, 57, 6, 0, 19, 33, 1, 4, 5, 6, 11, 4, 24, 5, 42]
@@ -309,7 +284,7 @@ $(function () {
             }]
         }, {
             title: {
-                text: '探针A客流情况',
+                text: '探针A客流情况'
             },
             series: [{
                 'data': [14, 2, 85, 52,14, 2, 85, 52, 38, 38, 40, 18, 0, 16, 48, 2, 12, 8, 15, 18, 2, 30, 9, 5]
@@ -332,7 +307,7 @@ $(function () {
         $(".probeID").removeClass("chosen");
         $(this).addClass("chosen");
     })
-})
+});
 // var option = {
 //     title : {
 //         text: '某年客流量和入店量',

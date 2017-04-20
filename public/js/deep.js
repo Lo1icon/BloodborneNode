@@ -1,93 +1,145 @@
 /**
  * Created by Lynn on 2017/3/18.
  */
-
+/**
+ * Created by Lynn on 2017/3/18.
+ */
+/**
+ * Created by Lynn on 2017/3/16.
+ */
 $(function () {
     var deepCharts=echarts.init(document.getElementById('deepChart'));
+    $('#datePicker').datepicker();
+    $('.probeID').click(function () {
+        $(".probeID").removeClass("chosen");
+        $(this).addClass("chosen");
+    });
     var option = {
         title: {
-            text: '深访分析',
+            text: '深访/跳出率'
         },
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c}%"
-        },
-        toolbox: {
-            feature: {
-                dataView: {readOnly: false},
-                restore: {},
-                saveAsImage: {}
+        tooltip : {
+            trigger: 'axis',
+            axisPointer:{
+                type:'shadow'
             }
         },
         legend: {
-            data: ['客流','入店','深访','购买']
+            data:['深访率','跳出率']
         },
-        series: [
+        toolbox: {
+            show : true,
+            feature : {
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        xAxis : [
             {
-                name: '预期',
-                type: 'funnel',
-                left: '10%',
-                width: '80%',
-                label: {
+                type : 'category',
+                data: ['一', '二', '三', '四', '五', '六', '七']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'深访率',
+                barGap:'1%',
+                smooth:'true',
+                areaStyle: {
                     normal: {
-                        formatter: '{b}预期'
-                    },
-                    emphasis: {
-                        formatter: '{b}预期: {c}%'
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(199, 237, 250,0.5)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(199, 237, 250,0.2)'
+                        }], false)
                     }
                 },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
+                type:'line',
+                data:[ 7,  25,50, 76,  102,130,164],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
                 },
                 itemStyle: {
                     normal: {
-                        opacity: 0.7
+
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(200, 53,49, 1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(200, 53,49, 0.3)'
+                        }]),
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                        shadowBlur: 10
+
                     }
-                },
-                data: [
-                    {value: 25, name: '购买'},
-                    {value: 50, name: '深访'},
-                    {value: 75, name: '入店'},
-                    {value: 100, name: '客流'}
-                ]
+                }
+
             },
             {
-                name: '实际',
-                type: 'funnel',
-                left: '10%',
-                width: '80%',
-                maxSize: '80%',
-                label: {
+                name:'跳出率',
+                type:'line',
+                smooth:'true',
+                areaStyle: {
                     normal: {
-                        position: 'inside',
-                        formatter: '{c}%',
-                        textStyle: {
-                            color: '#fff'
-                        }
-                    },
-                    emphasis: {
-                        position:'inside',
-                        formatter: '{b}实际: {c}%',
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(216, 244, 247,1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(216, 244, 247,1)'
+                        }], false)
                     }
+                },
+                barGap:'1%',
+                data:[   125,160,120,100,70 ,48, 18],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name : '平均值'}
+                    ]
                 },
                 itemStyle: {
                     normal: {
-                        opacity: 0.5,
-                        borderColor: '#fff',
-                        borderWidth: 2
+
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(17, 168,171, 1)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(17, 168,171, 0.3)'
+                        }]),
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                        shadowBlur: 10
                     }
-                },
-                data: [
-                    {value: 10, name: '购买'},
-                    {value: 25, name: '深访'},
-                    {value: 50, name: '入店'},
-                    {value: 80, name: '客流'}
-                ]
+                }
             }
         ]
     };
+
     deepCharts.setOption(option);
     window.addEventListener("resize", function () {
 

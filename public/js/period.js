@@ -9,7 +9,10 @@ $(function () {
     var url2='/api/periodData2';
 
     $('#datePicker').datepicker();
-
+    $('.probeID').click(function () {
+        $(".probeID").removeClass("chosen");
+        $(this).addClass("chosen");
+    })
     $('#submitDate').click(function () {
         // alert($('#datePicker').datepicker('getDate'));
         var dateStr=$('#datePicker').datepicker('getDate').toString();

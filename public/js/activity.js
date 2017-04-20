@@ -3,7 +3,11 @@
  */
 $(function () {
     var activityCharts=echarts.init(document.getElementById('activityChart'));
-
+    $('#datePicker').datepicker();
+    $('.probeID').click(function () {
+        $(".probeID").removeClass("chosen");
+        $(this).addClass("chosen");
+    });
     var option = {
         title: {
             text: '顾客活跃度'

@@ -36,16 +36,6 @@
             margin-top: 0;
         }
 
-        .filterinput {
-            background-color: rgba(249, 244, 244, 0);
-            border-radius: 15px;
-            width: 90%;
-            height: 30px;
-            border: thin solid #FFF;
-            text-indent: 0.5em;
-            font-weight: bold;
-            color: #FFF;
-        }
 
         #demo-list a {
             overflow: hidden;
@@ -94,7 +84,15 @@
 				12 </span></li>
 
                 </ul>
+                <div class="jquery-accordion-menu-footer">
+                    <div class="probeChoose">
+                        <button class="probeID chosen">探针A</button>
+                        <button class="probeID">探针B</button>
+                    </div>
+                    <input  class="filterinput" id="datePicker" placeholder="请选择日期">
+                    <button class="searchDate fa fa-search"></button>
 
+                </div>
             </div>
         </div>
     </div>
