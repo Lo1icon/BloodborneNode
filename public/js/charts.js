@@ -8,17 +8,17 @@
 
 //ajax URL here
 var url = {
-    // lineChart: '/frontend/getFlow',
-    // intime: '/frontend/intime',
-    // T: '/frontend/period',
-    // No: '/frontend/newOld',
-    // gps:'/frontend/gps'
+    lineChart: '/frontend/getFlow',
+    intime: '/frontend/intime',
+    T: '/frontend/period',
+    No: '/frontend/newOld',
+    gps:'/frontend/gps'
 
-    lineChart: '/getFlow',
-    intime: '/intime',
-    T: '/period',
-    No: '/newOld',
-    gps: '/api/gps'
+    // lineChart: '/getFlow',
+    // intime: '/intime',
+    // T: '/period',
+    // No: '/newOld',
+    // gps: '/api/gps'
 };
 var probeNum = 0;
 var params = {
@@ -75,8 +75,9 @@ $(function () {
 
     function getGPS(params) {
         $.get(url.gps, params, function (json) {
-            // var GPSParsed=eval('('+json+')');
-            var GPSParsed = json;
+            var jsonStr=json;
+            var GPSParsed=eval('('+jsonStr+')');
+            // var GPSParsed = json;
 
             lon = GPSParsed.lon;
             lat = GPSParsed.lat;
@@ -140,9 +141,9 @@ var jsonTParsed = [];
 var jsonNoParsed = [];
 
 function jsontoline(json) {
-    // var jsonStr=json;
-    // jsonlineParsed=eval('('+jsonStr+')');
-    jsonlineParsed = json;
+    var jsonStr=json;
+    jsonlineParsed=eval('('+jsonStr+')');
+    // jsonlineParsed = json;
     for (var i = 0; i < 10; i++) {
         keliudata.push({
             name: jsonlineParsed[i].time,
@@ -168,9 +169,9 @@ function jsontoline(json) {
     }
 }
 function jsontointime(json) {
-    // var jsonStr=json;
-    // jsonintimeParsed=eval('('+jsonStr+')');
-    jsonintimeParsed = json;
+    var jsonStr=json;
+    jsonintimeParsed=eval('('+jsonStr+')');
+    // jsonintimeParsed = json;
     tsdata[0] = jsonintimeParsed.f1;
     tsdata[1] = jsonintimeParsed.f2;
     tsdata[2] = jsonintimeParsed.f3;
@@ -189,9 +190,9 @@ function jsontointime(json) {
     }];
 }
 function jsontoT(json) {
-    // var jsonStr=json;
-    // jsonTParsed=eval('('+jsonStr+')');
-    jsonTParsed = json;
+    var jsonStr=json;
+    jsonTParsed=eval('('+jsonStr+')');
+    // jsonTParsed = json;
     vlvdata[0] = jsonTParsed.t1;
     vlvdata[1] = jsonTParsed.t2;
     vlvdata[2] = jsonTParsed.t3;
@@ -208,9 +209,9 @@ function jsontoT(json) {
 }
 
 function jsontoNo(json) {
-    // var jsonStr=json;
-    // jsonNoParsed=eval('('+jsonStr+')');
-    jsonNoParsed = json;
+    var jsonStr=json;
+    jsonNoParsed=eval('('+jsonStr+')');
+    // jsonNoParsed = json;
     nodata = [
         {value: jsonNoParsed.newVisitor, name: '新顾客'},
         {value: jsonNoParsed.oldVisitor, name: '老顾客'}

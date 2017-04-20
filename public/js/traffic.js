@@ -5,8 +5,9 @@ $(function () {
     var probeNum=0;
     var trafficCharts = echarts.init(document.getElementById('trafficChart'));
 
-    var url = '/api/trafficData';
-    // var url='/frontend/details/traffic'
+    // var url = '/api/trafficData';
+    var url='/frontend/details/traffic';
+
     $('.probeID').click(function () {
         $(".probeID").removeClass("chosen");
         $(this).addClass("chosen");
@@ -30,8 +31,10 @@ $(function () {
     };
     function getData(params) {
         $.get(url,params,function (json) {
-            var jsonParsed = json;
-            // jsonParsed=eval('('+json+')');
+            // var jsonParsed = json;
+            var jsonStr=json;
+            var jsonParsed=eval('('+jsonStr+')');
+
             trafficCharts.setOption({
                 options: [
                     {

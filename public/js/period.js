@@ -6,12 +6,13 @@ $(function () {
     var probeNum=0;
     var periodCharts=echarts.init(document.getElementById('periodChart'));
 
-    var url='/api/periodData1';
-    // var url='/details/period';
+    // var url='/api/periodData1';
+    var url='/frontend/details/period';
     function getData(params) {
         $.get(url,params,function (json) {
-            var jsonParsed=json;
-            //var jsonParsed=eval('('+json+')');
+            // var jsonParsed=json;
+            var jsonStr=json;
+            var jsonParsed=eval('('+jsonStr+')');
 
             periodCharts.setOption({
                 series:[{

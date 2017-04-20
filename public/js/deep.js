@@ -6,8 +6,8 @@ $(function () {
     var probeNum=0;
 
     var deepCharts=echarts.init(document.getElementById('deepChart'));
-    var url='/api/deep';
-    // var url='/details/deep';
+    // var url='/api/deep';
+    var url='/frontend/details/deep';
     var today=new Date();
     var todayStr=today.toString();
 
@@ -17,8 +17,9 @@ $(function () {
     };
     function getData(params) {
         $.get(url,params,function (json) {
-            var jsonParsed=json;
-            //var jsonParsed=eval('('+json+')');
+            // var jsonParsed=json;
+            var jsonStr=json;
+            var jsonParsed=eval('('+jsonStr+')');
 
             deepCharts.setOption({
                 series:[{

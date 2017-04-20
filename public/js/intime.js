@@ -6,8 +6,8 @@ $(function () {
 
     var intimeCharts=echarts.init(document.getElementById('intimeChart'));
 
-    var url='/api/intimeData1';
-    // var url='/details/intime';
+    // var url='/api/intimeData1';
+    var url='/frontend/details/intime';
     var today=new Date();
     var todayStr=today.toString();
 
@@ -18,8 +18,9 @@ $(function () {
     getData(params);
     function getData(params) {
         $.get(url,params,function (json) {
-            var jsonParsed=json;
-            //var jsonParsed=eval('('+json+')');
+            // var jsonParsed=json;
+            var jsonStr=json;
+            var jsonParsed=eval('('+jsonStr+')');
 
             intimeCharts.setOption({
                 series:[{

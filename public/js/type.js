@@ -8,8 +8,8 @@ $(function () {
     var probeNum=0;
 
     var typeCharts=echarts.init(document.getElementById('typeChart'));
-    var url = '/api/newOld';
-    // var url='/frontend/details/newOld'
+    // var url = '/api/newOld';
+    var url='/frontend/details/newOld'
 
     var today=new Date();
     var todayStr=today.toString();
@@ -19,8 +19,10 @@ $(function () {
     };
     function getData(params) {
         $.get(url,params,function (json) {
-            var jsonParsed = json;
-            // jsonParsed=eval('('+json+')');
+            // var jsonParsed = json;
+            var jsonStr=json;
+            var jsonParsed=eval('('+jsonStr+')');
+
             typeCharts.setOption({
                 series:[{
                     data:jsonParsed.newVisitor
