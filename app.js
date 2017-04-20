@@ -34,9 +34,9 @@ app.use('/Bloodborne', index);
 app.use('/getFlow', getFlow);
 
 app.use('/intime', intime);
-app.use('/T', T);
+app.use('/period', T);
 app.use('/va',va);
-app.use('/No',No);
+app.use('/newOld',No);
 
 app.use('/api',api);
 

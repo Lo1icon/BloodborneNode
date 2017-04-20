@@ -6,7 +6,10 @@ $(function () {
 
     var url = '/api/trafficData';
     // var url2='/api/intimeData2';
-
+    $('.probeID').click(function () {
+        $(".probeID").removeClass("chosen");
+        $(this).addClass("chosen");
+    })
 
     var today=new Date();
     var todayStr=today.toString();
@@ -41,8 +44,8 @@ $(function () {
     })
     $('#datePicker').datepicker();
 
-    $('#submitDate').click(function () {
-        // alert($('#datePicker').datepicker('getDate'));
+    $('.searchDate').click(function () {
+        alert($('#datePicker').datepicker('getDate'));
         var dateStr = $('#datePicker').datepicker('getDate').toString();
         $.get(url, dateStr, function (json) {
             var jsonParsed = json;
@@ -303,10 +306,7 @@ $(function () {
         trafficCharts.resize();
 
     });
-    $('.probeID').click(function () {
-        $(".probeID").removeClass("chosen");
-        $(this).addClass("chosen");
-    })
+
 });
 // var option = {
 //     title : {

@@ -13,8 +13,8 @@ var url = {
     // lineChart: '/frontend/getFlow',
     lineChart: '/getFlow',
     intime: '/intime',
-    T: '/T',
-    No: '/No'
+    T: '/period',
+    No: '/newOld'
 };
 
 // var lineJSON = [];
@@ -51,7 +51,6 @@ $(function () {
         map.addOverlay(marker);
     })
     map.enableScrollWheelZoom();
-
 
     $('#datePicker').datepicker();
 
