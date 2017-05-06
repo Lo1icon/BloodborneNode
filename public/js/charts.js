@@ -80,8 +80,9 @@ $(function () {
 
             lon = GPSParsed.lon;
             lat = GPSParsed.lat;
+            newMap();
         });
-        newMap();
+
 
     }
 
@@ -295,7 +296,7 @@ function getNoJSON(params) {
 
 $(function () {
     getlineJSON(params);
-
+    // getGPS(params);
     setTimeout(function () {
         getTJSON(params);
         setTimeout(function () {
