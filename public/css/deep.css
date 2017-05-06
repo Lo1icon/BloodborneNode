@@ -1,0 +1,75 @@
+#restCharts{
+    margin: 20px;
+    height:auto;
+    width:auto;
+    background-color: #FFFFFF;
+}
+
+#deepChart{
+    height:100%;
+    width:100%;
+
+}
+#dateContainer{
+    position: absolute;
+    height:25px;
+    width:200px;
+    right:20px;
+    top:20px;
+    z-index: 101;
+}
+.searchDate{
+    position: relative;
+    right:0;
+    width:20%;
+    height:30px;
+    background-color: #FFFFFF;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border: thin solid #FFF;
+    padding:0;
+    display: inline-block;
+    left:-5px;
+    cursor: pointer;
+}
+.searchDate:focus{
+    outline:none;
+
+}
+
+.filterinput {
+    background-color: rgba(249, 244, 244, 0);
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 70%;
+    height: 30px;
+    border: thin solid #FFF;
+    text-indent: 0.5em;
+    /*font-weight: bold;*/
+    color: #FFF;
+
+}
+.probeChoose{
+    width:90%;
+    height:55px;
+}
+.probeID{
+    height:35px;
+    width:45%;
+    margin-right: 1px;
+    margin-top: 15px;
+    border:1px solid rgba(0, 0, 0, .1);
+    cursor: pointer;
+    background-color: #292929;
+    color: #fff;
+    transition: background-color 0.3s ease-in;
+}
+.probeID:hover{
+    background-color: #383838;
+}
+.chosen{
+    background-color: #383838 !important;
+}
+.probeID:focus{
+    outline:none;
+}

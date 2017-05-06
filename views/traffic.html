@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bloodborne</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
+    <link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="//cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+
+    <link href="../css/traffic.css" rel="stylesheet" type="text/css">
+
+    <link href="../css/jquery-accordion-menu.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>-->
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        body {
+            /*background: #f0f0f0;*/
+            background: #FFFFFF;
+        }
+
+        #menuBar {
+            width: 100%;
+            height: 100%;
+            margin-left:0;
+            margin-top: 0;
+        }
+
+
+
+        #demo-list a {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .black{
+            height:100%;
+        }
+        #form{
+            /*padding-left: 30%;*/
+            text-align: center;
+            padding: 0;
+        }
+
+    </style>
+
+
+</head>
+<body>
+<div id="content">
+    <div id="leftMenu">
+        <!--<div id="header">Bloodborne</div>-->
+        <div id="menuBar">
+            <div id="jquery-accordion-menu" class="jquery-accordion-menu black">
+                <div class="jquery-accordion-menu-header" id="form" style="user-select: none">Bloodborne</div>
+
+                <ul id="demo-list">
+
+                    <li class=" homeLoad"><a href="http://127.0.0.1:8080/Bloodborne/index"><i class="fa fa-home "></i>Home </a></li>
+                    <li class="active"><a href="#" class="submenu-indicator-minus"><i class="fa fa-cog"></i>Details </a>
+                        <ul class="submenu" style="display: block;">
+                            <li class="trafficLoad"><a href="http://127.0.0.1:8080/Bloodborne/traffic" style="background: #222;">客流分析 </a></li>
+
+                            <li><a href="http://127.0.0.1:8080/Bloodborne/period">来访周期 </a></li>
+                            <li><a href="http://127.0.0.1:8080/Bloodborne/intime">驻店时长 </a></li>
+                            <!--<li><a href="http://127.0.0.1:8080/Bloodborne/activity">顾客活跃度 </a></li>-->
+                            <li><a href="http://127.0.0.1:8080/Bloodborne/type">新老顾客 </a></li>
+                            <!--<li><a href="http://127.0.0.1:8080/Bloodborne/deep">深访率 </a></li>-->
+                            <li><a href="http://127.0.0.1:8080/Bloodborne/deep">深访/跳出率 </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-glass"></i>Events </a></li>
+                    <li><a href="#"><i class="fa fa-file-image-o"></i>Gallery </a><span
+                            class="jquery-accordion-menu-label">
+				12 </span></li>
+
+                </ul>
+                <div class="jquery-accordion-menu-footer">
+                    <div class="probeChoose">
+                        <button class="probeID chosen" id="probeA">探针A</button>
+                        <button class="probeID" id="probeB">探针B</button>
+                    </div>
+                    <input  class="filterinput" id="datePicker" placeholder="请选择日期">
+                    <button class="searchDate fa fa-search"></button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="right">
+
+        <div id="restCharts">
+            <!--<div id="dateContainer">-->
+                <!--选择日期：-->
+                <!--<input type="text"  id="datePicker">-->
+                <!--<button id="submitDate">查询</button>-->
+            <!--</div>-->
+
+            <div id="trafficChart"></div>
+
+        </div>
+    </div>
+</div>
+</body>
+<!--<script src="js/jquery-1.11.2.min.js"></script>-->
+<!--<script src="js/jquery-3.0.0.js"></script>-->
+<!--<script src="js/bootstrap.min.js"></script>-->
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="../js/jquery-accordion-menu.js" type="text/javascript"></script>
+<!--<script src="js/echarts.js"></script>-->
+<script src="//cdn.bootcss.com/echarts/3.4.0/echarts.min.js"></script>
+
+<!--<script src="../js/index.js"></script>-->
+<script src="../js/traffic.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+
+    });
+
+    $(function () {
+        //顶部导航切换
+        $("#demo-list li").click(function () {
+            $("#demo-list li.active").removeClass("active");
+            $(this).addClass("active");
+        })
+    });
+</script>
+
+</html>

@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Bloodborne</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
     <!--<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
     <link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="css/index.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
 
-    <link href="css/jquery-accordion-menu.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+
+    <link href="../css/home.css" rel="stylesheet" type="text/css">
+    <link href="../css/jquery-accordion-menu.css" rel="stylesheet" type="text/css"/>
     <!--<link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>-->
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 
@@ -30,17 +33,6 @@
             height: 100%;
             margin-left:0;
             margin-top: 0;
-        }
-
-        .filterinput {
-            background-color: rgba(249, 244, 244, 0);
-            border-radius: 15px;
-            width: 90%;
-            height: 30px;
-            border: thin solid #FFF;
-            text-indent: 0.5em;
-            font-weight: bold;
-            color: #FFF;
         }
 
         #demo-list a {
@@ -71,43 +63,30 @@
             <div id="jquery-accordion-menu" class="jquery-accordion-menu black">
                 <div class="jquery-accordion-menu-header" id="form">Bloodborne</div>
                 <ul id="demo-list">
-
-                    <li class="active"><a href="#"><i class="fa fa-home"></i>Home </a></li>
+                    <li class="active homeLoad"><a href="http://127.0.0.1:8080/Bloodborne/index"><i class="fa fa-home "></i>Home </a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i>Details </a>
+                        <ul class="submenu">
+                            <li class="trafficLoad"><a href="http://127.0.0.1:8080/Bloodborne/traffic">客流分析 </a></li>
+                            <li><a href="http://127.0.0.1:8080/Bloodborne/period">来访周期 </a></li>
+                            <li><a href="http://127.0.0.1:8080/Bloodborne/intime">驻店时长 </a></li>
+                            <!--<li><a href="http://127.0.0.1:8080/Bloodborne/activity">顾客活跃度 </a></li>-->
+                            <li><a href="http://127.0.0.1:8080/Bloodborne/type">新老顾客 </a></li>
+                            <li><a href="http://127.0.0.1:8080/Bloodborne/deep">深访/跳出率 </a></li>
+                        </ul>
+                    </li>
                     <li><a href="#"><i class="fa fa-glass"></i>Events </a></li>
                     <li><a href="#"><i class="fa fa-file-image-o"></i>Gallery </a><span
                             class="jquery-accordion-menu-label">
 				12 </span></li>
-                    <li><a href="#"><i class="fa fa-cog"></i>Services </a>
-                        <ul class="submenu">
-                            <li><a href="#">Web Design </a></li>
-                            <li><a href="#">Hosting </a></li>
-                            <li><a href="#">Design </a>
-                                <ul class="submenu">
-                                    <li><a href="#">Graphics </a></li>
-                                    <li><a href="#">Vectors </a></li>
-                                    <li><a href="#">Photoshop </a></li>
-                                    <li><a href="#">Fonts </a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Consulting </a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#"><i class="fa fa-home"></i>系统管理 </a></li>
-                    <li><a href="#"><i class="fa fa-suitcase"></i>Portfolio </a>
-                        <ul class="submenu">
-                            <li><a href="#">Web Design </a></li>
-                            <li><a href="#">Graphics </a><span class="jquery-accordion-menu-label">10 </span>
-                            </li>
-                            <li><a href="#">Photoshop </a></li>
-                            <li><a href="#">Programming </a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#"><i class="fa fa-user"></i>About </a></li>
-                    <li><a href="#"><i class="fa fa-envelope"></i>Contact </a></li>
-
                 </ul>
                 <div class="jquery-accordion-menu-footer">
-                    Footer
+                    <div class="probeChoose">
+                        <button class="probeID chosen" id="probeA">探针A</button>
+                        <button class="probeID" id="probeB">探针B</button>
+                    </div>
+                    <!--<input  class="filterinput" id="datePicker" placeholder="请选择日期">-->
+                    <!--<button class="searchDate fa fa-search"></button>-->
+
                 </div>
             </div>
         </div>
@@ -115,82 +94,44 @@
 
 
     <div id="right">
-        <!--<div id="topBar" class="red"></div>-->
-
-
-        <!--<div id="topMainData">-->
-            <!--&lt;!&ndash;实时数据&ndash;&gt;-->
-            <!--<div class="utdData">-->
-                <!--<p>客流量</p>-->
-                <!--<div>charts</div>-->
-            <!--</div>-->
-            <!--<div class="utdData">-->
-                <!--<p>入店量</p>-->
-                <!--<div>charts</div>-->
-            <!--</div>-->
-            <!--<div class="utdData">-->
-                <!--<p>入店率</p>-->
-                <!--<div>charts</div>-->
-            <!--</div>-->
-            <!--<div class="utdData">-->
-                <!--<p>跳出率</p>-->
-                <!--<div>charts</div>-->
-            <!--</div>-->
-            <!--<div class="utdData">-->
-                <!--<p>深访率</p>-->
-                <!--<div>charts</div>-->
-            <!--</div>-->
-
-            <!--<ul class="utdData">-->
-                <!--<li>客流量</li>-->
-                <!--<li>2333</li>-->
-            <!--</ul>-->
-            <!--<ul class="utdData">-->
-                <!--<li>入店量</li>-->
-                <!--<li>233</li>-->
-            <!--</ul>-->
-            <!--<ul class="utdData">-->
-                <!--<li>入店率</li>-->
-                <!--<li>23.3%</li>-->
-            <!--</ul>-->
-            <!--<ul class="utdData">-->
-                <!--<li>跳出率</li>-->
-                <!--<li>2.33%</li>-->
-            <!--</ul>-->
-            <!--<ul class="utdData">-->
-                <!--<li>深访率</li>-->
-                <!--<li>0.233%</li>-->
-            <!--</ul>-->
-        <!--</div>-->
         <div id="restCharts">
-            <div class="homeData" id="traffic">
+            <div class="homeData" >
+                <div class="charts" id="traffic"></div>
 
             </div>
-            <div class="homeData" id="visitor">
+            <div class="homeData">
+                <div class="charts" id="visitor"></div>
 
             </div>
-            <div class="homeData" id="visPer">
+            <div class="homeData">
+                <div class="charts" id="visPer"></div>
 
             </div>
-            <div class="homeData" id="visLastVis">
 
+            <div class="homeData">
+                <div class="charts" id="visActivity"></div>
+                <div class="period">时间段：12:00-13:00</div>
             </div>
-            <div class="homeData" id="timeStay">
-
+            <div class="homeData">
+                <div class="charts" id="newOldVisitor"></div>
+                <div class="period">时间段：12:00-13:00</div>
+            </div>
+            <div class="homeData">
+                <div class="charts" id="jumpVisitor"></div>
+                <div class="period">时间段：12:00-13:00</div>
+            </div>
+            <div class="homeData">
+                <div class="charts" id="visLastVis"></div>
+                <div class="period">时间段：12:00-13:00</div>
+            </div>
+            <div class="homeData">
+                <div class="charts" id="timeStay"></div>
+                <div class="period">时间段：12:00-13:00</div>
             </div>
             <div class="homeData" id="bblogo">
-                <img src="img/bblogo.jpg">
+                <div id="probeMap"></div>
+                <!--<img src="../img/bblogo.jpg">-->
             </div>
-            <div class="homeData" id="visActivity">
-
-            </div>
-            <div class="homeData" id="newOldVisitor">
-
-            </div>
-            <div class="homeData"id="jumpVisitor">
-
-            </div>
-
         </div>
     </div>
 </div>
@@ -199,11 +140,16 @@
 <!--<script src="js/jquery-3.0.0.js"></script>-->
 <!--<script src="js/bootstrap.min.js"></script>-->
 <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-<script src="js/jquery-accordion-menu.js" type="text/javascript"></script>
+<script src="../js/jquery-accordion-menu.js" type="text/javascript"></script>
 <!--<script src="js/echarts.js"></script>-->
 <script src="//cdn.bootcss.com/echarts/3.4.0/echarts.min.js"></script>
-<script src="js/charts.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=l4aQoR4n8eotCjdWDjOjRSx7vva16j99"></script>
+
+<script src="../js/charts.js"></script>
+<script src="../js/index.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
         jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
