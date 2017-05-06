@@ -102,7 +102,7 @@ $(function () {
         params = {
             probeID: probeNum
         };
-        getlineJSON(params);
+        // getlineJSON(params);
         getGPS(params);
         setTimeout(function () {
             getTJSON(params);
@@ -139,6 +139,7 @@ var jsonlineParsed = [];
 var jsonintimeParsed = [];
 var jsonTParsed = [];
 var jsonNoParsed = [];
+
 
 function jsontoline(json) {
     // var jsonStr=json;
@@ -295,7 +296,7 @@ function getNoJSON(params) {
 }
 
 $(function () {
-    getlineJSON(params);
+    // getlineJSON(params);
     // getGPS(params);
     setTimeout(function () {
         getTJSON(params);
@@ -314,7 +315,7 @@ $(function () {
 });
 
 setInterval(function () {
-    getlineJSON(params);
+    // getlineJSON(params);
 }, 3000);
 
 setInterval(function () {
@@ -331,6 +332,39 @@ setInterval(function () {
 }, 300000);
 
 $(function () {
+
+    var now=+new Date();
+    var threeSec = 3* 1000;
+    var value = Math.random() * 100;
+    for (var i = 0; i < 10; i++) {
+        keliudata.push(randomData());
+        visitordata.push(randomData());
+        visperdata.push(randomData1())
+    }
+
+    function randomData() {
+        now = new Date(+now + threeSec);
+        value = Math.random() *100;
+        return {
+            name: now.toString(),
+            value: [
+                ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds()),
+                Math.round(value)
+            ]
+        }
+    }
+
+    function randomData1() {
+        now = new Date(+now + threeSec);
+        value = Math.random()*100/100 ;
+        return {
+            name: now.toString(),
+            value: [
+                ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds()),
+                value.toFixed(2)
+            ]
+        }
+    }
 
     var json1 = [
         {
@@ -420,13 +454,13 @@ $(function () {
         }
     }
 
-    jsonFirst(json1);
+    // jsonFirst(json1);
 
     var option1 = {
 
         title: {
             text: '客流量',
-            link: "http://127.0.0.1:8080/Bloodborne/traffic",
+            link: "http://www.scarlett.vip/Bloodborne/traffic",
             target: 'self'
         },
         tooltip: {
@@ -446,7 +480,7 @@ $(function () {
             type: 'continuous',
             seriesIndex: 0,
             min: 0,
-            max: 2000
+            max: 100
         },
         xAxis: {
             type: 'time',
@@ -483,7 +517,19 @@ $(function () {
 
     };
     keliucharts.setOption(option1);
+    setInterval(function () {
 
+        for (var i = 0; i < 1; i++) {
+            keliudata.shift();
+            keliudata.push(randomData());
+        }
+
+        keliucharts.setOption({
+            series: [{
+                data: keliudata
+            }]
+        });
+    }, 3000);
 // setInterval(function () {
 //
 //     for (var i = 0; i < 1; i++) {
@@ -530,7 +576,7 @@ $(function () {
     var option2 = {
         title: {
             text: '入店量',
-            link: "http://127.0.0.1:8080/Bloodborne/traffic",
+            link: "http://www.scarlett.vip/Bloodborne/traffic",
             target: 'self'
         },
         visualMap: {
@@ -538,7 +584,7 @@ $(function () {
             type: 'continuous',
             seriesIndex: 0,
             min: 0,
-            max: 1000
+            max: 100
         },
         tooltip: {
             trigger: 'axis',
@@ -586,7 +632,19 @@ $(function () {
 
     };
     visitorcharts.setOption(option2);
+    setInterval(function () {
 
+        for (var i = 0; i < 1; i++) {
+            visitordata.shift();
+            visitordata.push(randomData());
+        }
+
+        visitorcharts.setOption({
+            series: [{
+                data: visitordata
+            }]
+        });
+    }, 3000);
 // setInterval(function () {
 //
 //     for (var i = 0; i < 1; i++) {
@@ -636,7 +694,7 @@ $(function () {
     var option3 = {
         title: {
             text: '入店率',
-            link: "http://127.0.0.1:8080/Bloodborne/traffic",
+            link: "http://www.scarlett.vip/Bloodborne/traffic",
             target: 'self'
         },
         visualMap: {
@@ -692,7 +750,19 @@ $(function () {
 
     };
     vispercharts.setOption(option3);
+    setInterval(function () {
 
+        for (var i = 0; i < 1; i++) {
+            visperdata.shift();
+            visperdata.push(randomData1());
+        }
+
+        vispercharts.setOption({
+            series: [{
+                data: visperdata
+            }]
+        });
+    }, 3000);
 // setInterval(function () {
 //
 //     for (var i = 0; i < 1; i++) {
@@ -719,7 +789,7 @@ $(function () {
         //#3398DB
         title: {
             text: '来访周期分布',
-            link: "http://127.0.0.1:8080/Bloodborne/period",
+            link: "http://www.scarlett.vip/Bloodborne/period",
             target: 'self'
         },
         tooltip: {
@@ -790,7 +860,7 @@ $(function () {
         //#3398DB
         title: {
             text: '驻店时长分布',
-            link: "http://127.0.0.1:8080/Bloodborne/intime",
+            link: "http://www.scarlett.vip/Bloodborne/intime",
             target: 'self'
         },
         tooltip: {
@@ -860,7 +930,7 @@ $(function () {
 
         title: {
             text: '顾客活跃度',
-            link: "http://127.0.0.1:8080/Bloodborne/period",
+            link: "http://www.scarlett.vip/Bloodborne/period",
             target: 'self'
             // left: 'center',
             // top: 20,
@@ -935,7 +1005,7 @@ $(function () {
         color: ['#c23531', '#91c7ae'],
         title: {
             text: "新老顾客占比",
-            link: "http://127.0.0.1:8080/Bloodborne/type",
+            link: "http://www.scarlett.vip/Bloodborne/type",
             target: 'self'
         },
         grid: {
@@ -983,7 +1053,7 @@ $(function () {
         color: ['#c23531', '#91c7ae', '#d48265'],
         title: {
             text: "深访/跳出占比",
-            link: "http://127.0.0.1:8080/Bloodborne/deep",
+            link: "http://www.scarlett.vip/Bloodborne/deep",
             target: 'self'
         },
         tooltip: {
