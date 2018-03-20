@@ -18,7 +18,7 @@ $(function () {
     function getData(params) {
         $.get(url,params,function (json) {
             var jsonParsed=json;
-            //var jsonParsed=eval('('+json+')');
+            var jsonParsed=eval('('+json+')');
 
             deepCharts.setOption({
                 series:[{
