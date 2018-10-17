@@ -23,7 +23,7 @@ module.exports = {
       host: '58.87.119.77',
       ref: 'origin/localhost',
       repo: 'git@github.com:LynnScarlett/BloodborneNode.git',
-      path: 'pmtest/production',
+      path: '/home/ubuntu/project/pmtest/production',
       'post-deploy': 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev: {
@@ -31,7 +31,7 @@ module.exports = {
       host: '58.87.119.77',
       ref: 'origin/localhost',
       repo: 'git@github.com:LynnScarlett/BloodborneNode.git',
-      path: 'pmtest/dev',
+      path: '/home/ubuntu/project/pmtest/dev',
       'post-deploy': 'npm install && pm2 reload ecosystem.config.js --env dev',
       env: {
         NODE_ENV: 'dev'
