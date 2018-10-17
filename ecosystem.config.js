@@ -23,7 +23,7 @@ module.exports = {
       host: '58.87.119.77',
       ref: 'origin/localhost',
       repo: 'git@github.com:LynnScarlett/BloodborneNode.git',
-      path: '/project/pmtest/production',
+      path: '~/project/pmtest/production',
       'post-deploy': 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev: {
